@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimationFrame, useMotionValue } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Layers, Settings2, TrendingUp } from 'lucide-react'
@@ -17,12 +17,9 @@ const IMAGES = [
   { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
 ]
 
-// Desktop: 20 cards × 18° — outermost visible card at θ = 72° (4 steps)
-// Used in the viewport-fill radius formula:
-//   screenX = R·sin(θ)·P / (P + R·cos(θ)) = targetX
-//   → R = targetX·P / (sin(θ)·P − cos(θ)·targetX)
-const SIN_72 = Math.sin((72 * Math.PI) / 180) // 0.9511
-const COS_72 = Math.cos((72 * Math.PI) / 180) // 0.3090
+const SIN_72 = Math.sin((72 * Math.PI) / 180)
+const COS_72 = Math.cos((72 * Math.PI) / 180)
+const COS_72_VAL = Math.cos((72 * Math.PI) / 180) // cos(72°) = 0.309
 
 const FEATURES = [
   {
@@ -42,8 +39,63 @@ const FEATURES = [
   },
 ]
 
+// Renders a red arc that traces the top edge of the concave card array.
+//
+// KEY FORMULA — quadratic bezier midpoint:
+//   y(t=0.5) = 0.5·ey + 0.5·cy
+// To make the midpoint land at centerPct, we need:
+//   cy = 2·centerPct − ey
+// We then add an extra 50% amplification so the curve is clearly visible
+// despite the container being much wider than it is tall.
+function TopArc({ edgePct, centerPct }: { edgePct: number; centerPct: number }) {
+  const ey = Math.max(0, edgePct - 2)
+  // Control point that makes the bezier midpoint reach centerPct, then 1.5× amplified
+  const baseControl = 2 * centerPct - ey
+  const cy = baseControl + (baseControl - ey) * 0.5
+  const eyStr = ey.toFixed(1)
+  const cyStr = cy.toFixed(1)
+  return (
+    <svg
+      aria-hidden
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 1,
+        overflow: 'visible',
+      }}
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+    >
+      {/* Glow layer — thick + transparent */}
+      <path
+        d={`M 10 ${eyStr} Q 50 ${cyStr} 90 ${eyStr}`}
+        stroke="#8B1A1A"
+        strokeWidth="10"
+        fill="none"
+        strokeLinecap="round"
+        opacity="0.12"
+        vectorEffect="non-scaling-stroke"
+      />
+      {/* Crisp line */}
+      <path
+        d={`M 10 ${eyStr} Q 50 ${cyStr} 90 ${eyStr}`}
+        stroke="#8B1A1A"
+        strokeWidth="1.4"
+        fill="none"
+        strokeLinecap="round"
+        opacity="0.65"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  )
+}
+
 export default function Hero() {
   const [viewportW, setViewportW] = useState(1440)
+  const rotY = useMotionValue(0)
 
   useEffect(() => {
     const update = () => setViewportW(window.innerWidth)
@@ -53,24 +105,23 @@ export default function Hero() {
   }, [])
 
   const isMobile = viewportW < 768
+  const durationMs = isMobile ? 55_000 : 100_000
 
-  // Desktop: 20 cards × 18°, tighter arc
-  // Mobile:  12 cards × 30° — shows 3 prominent cards without shrinking the 3D effect
+  useAnimationFrame((_, delta) => {
+    rotY.set((rotY.get() + (360 / durationMs) * delta) % 360)
+  })
+
   const cardCount = isMobile ? 12 : 20
   const angleStep = 360 / cardCount
 
-  // Mobile uses large fixed cards (not shrunken) so the 3D effect stays impactful
-  const cardW = isMobile ? 180 : Math.min(320, Math.max(260, Math.round(viewportW * 0.17)))
-  const cardH = Math.round(cardW * 1.6)
+  const cardW = isMobile ? 190 : Math.min(380, Math.max(300, Math.round(viewportW * 0.22)))
+  const cardH = Math.round(cardW * 1.55)
+  const containerH = cardH + 20
 
-  // Consistent 0.75× viewport perspective for strong depth on both platforms
-  const perspective = Math.round(viewportW * 0.75)
+  const perspective = Math.round(viewportW * 0.5)
 
-  // Minimum radius so adjacent cards never overlap on the arc
-  const minRadius = Math.ceil(((cardW + 4) * cardCount) / (2 * Math.PI))
+  const minRadius = Math.ceil(((cardW + 1) * cardCount) / (2 * Math.PI))
 
-  // Desktop: computed so outermost card (θ=72°) projects to ~85% of viewport half-width.
-  // Mobile: use minRadius directly — the arc fills the mobile screen naturally.
   let radius: number
   if (isMobile) {
     radius = minRadius
@@ -81,6 +132,14 @@ export default function Hero() {
     )
     radius = Math.max(minRadius, computedR)
   }
+
+  // Compute where card tops appear in the container (as % of containerH).
+  // Formula: topPct = 50 − 50 × (cardH/containerH) × P / (P + R·cos(θ))
+  // Center card (θ=0, deepest): top appears LOWER (higher %)
+  // Edge card (θ=72°, shallowest visible): top appears HIGHER (lower %)
+  const ratio = (cardH / containerH) * 50
+  const centerTopPct = 50 - ratio * (perspective / (perspective + radius))
+  const edgeTopPct   = 50 - ratio * (perspective / (perspective + radius * COS_72_VAL))
 
   return (
     <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
@@ -94,7 +153,7 @@ export default function Hero() {
       />
 
       {/* Text content */}
-      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-14">
+      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-1">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -145,22 +204,17 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── 3D Concave Cylinder Carousel ──
-        Cards use translateZ NEGATIVE → curve AWAY from viewer (concave, "into the page").
-        backfaceVisibility:hidden → only the back-arc (concave side) is visible.
-        No ancestor has opacity<1 / overflow:hidden / mask — preserve-3d tree is clean.
-        Edge fade and reveal overlay are siblings, never parents of the 3D tree.
-      */}
+      {/* ── 3D Concave Cylinder Carousel ── */}
       <div
         style={{
           width: '100vw',
           position: 'relative',
           left: '50%',
           transform: 'translateX(-50%)',
-          height: cardH + 80,
+          height: containerH,
         }}
       >
-        {/* Perspective context — no overflow, no opacity, no filter */}
+        {/* Perspective context */}
         <div
           style={{
             perspective: `${perspective}px`,
@@ -172,12 +226,10 @@ export default function Hero() {
             justifyContent: 'center',
           }}
         >
-          {/* Spinning cylinder — ONLY rotateY animates */}
           <motion.div
-            animate={{ rotateY: 360 }}
-            transition={{ duration: isMobile ? 22 : 30, ease: 'linear', repeat: Infinity }}
             style={{
               transformStyle: 'preserve-3d',
+              rotateY: rotY,
               width: cardW,
               height: cardH,
               position: 'relative',
@@ -197,13 +249,12 @@ export default function Hero() {
                     height: cardH,
                     borderRadius: 12,
                     overflow: 'hidden',
-                    // Negative translateZ → concave inward projection
                     transform: `rotateY(${angle}deg) translateZ(-${radius}px)`,
-                    // Hide front-arc cards (facing viewer) — show only back-arc (concave side)
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     border: '1px solid rgba(255,255,255,0.06)',
                     boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
+                    cursor: 'pointer',
                   }}
                 >
                   <Image
@@ -215,7 +266,7 @@ export default function Hero() {
                   />
                   <div
                     className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'rgba(0,0,0,0.1)' }}
+                    style={{ background: 'rgba(0,0,0,0.08)' }}
                   />
                 </div>
               )
@@ -223,19 +274,37 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Edge fade — 15% gradient for natural fade-into-background (not forced full-width) */}
+        {/* Red arc — computed to sit directly above the actual card top edge */}
+        {!isMobile && (
+          <TopArc edgePct={edgeTopPct} centerPct={centerTopPct} />
+        )}
+
+        {/* Edge fade */}
         <div
           aria-hidden
           style={{
             position: 'absolute',
             inset: 0,
             pointerEvents: 'none',
-            background:
-              'linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0) 15%, rgba(10,10,10,0) 85%, #0A0A0A 100%)',
+            zIndex: 2,
+            background: [
+              'linear-gradient(to right,',
+              '  #0A0A0A 0%,',
+              '  rgba(10,10,10,0.92) 7%,',
+              '  rgba(10,10,10,0.65) 14%,',
+              '  rgba(10,10,10,0.25) 21%,',
+              '  transparent 28%,',
+              '  transparent 72%,',
+              '  rgba(10,10,10,0.25) 79%,',
+              '  rgba(10,10,10,0.65) 86%,',
+              '  rgba(10,10,10,0.92) 93%,',
+              '  #0A0A0A 100%',
+              ')',
+            ].join(' '),
           }}
         />
 
-        {/* Reveal overlay — fades OUT (opacity 1→0). Sibling, not parent — 3D tree unaffected */}
+        {/* Reveal overlay */}
         <motion.div
           aria-hidden
           initial={{ opacity: 1 }}
@@ -246,28 +315,29 @@ export default function Hero() {
             inset: 0,
             background: '#0A0A0A',
             pointerEvents: 'none',
+            zIndex: 3,
           }}
         />
       </div>
 
-      {/* Feature Strip */}
+      {/* Feature strip */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="w-full bg-bg-secondary border-t border-border-subtle mt-8"
+        className="w-full"
       >
         <div className="container-site">
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border-subtle">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {FEATURES.map((feature, i) => {
               const Icon = feature.icon
               return (
-                <div key={i} className="flex flex-col gap-3 px-6 py-8 md:px-10">
+                <div key={i} className="flex flex-col items-center text-center gap-3 px-6 py-4 md:px-10">
                   <Icon size={22} className="text-accent" />
                   <p className="font-display text-[1.125rem] font-medium text-text-primary">
                     {feature.title}
                   </p>
-                  <p className="font-body text-body-sm text-text-secondary leading-relaxed">
+                  <p className="font-body text-body-sm text-text-secondary leading-relaxed max-w-[260px]">
                     {feature.description}
                   </p>
                 </div>
