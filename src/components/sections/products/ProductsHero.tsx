@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-export default function WorkHero() {
+export default function ProductsHero() {
   return (
     <section className="bg-bg-primary section-padding pt-36 pb-20 border-b border-border-subtle">
       <div className="container-site max-w-4xl">
@@ -12,7 +12,7 @@ export default function WorkHero() {
           transition={{ duration: 0.6 }}
           className="font-mono text-accent text-label uppercase tracking-widest mb-5"
         >
-          Results
+          Digital Products
         </motion.p>
 
         <motion.h1
@@ -21,7 +21,8 @@ export default function WorkHero() {
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
           className="font-display text-display-xl text-text-primary mb-8"
         >
-          Real Brands. Real Results.
+          The Same Systems We Use.{' '}
+          <span className="italic text-text-secondary">Now Yours.</span>
         </motion.h1>
 
         <motion.p
@@ -30,8 +31,9 @@ export default function WorkHero() {
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className="font-body text-body-lg text-text-secondary max-w-[580px]"
         >
-          Results over promises. Here is a look at the work Coréal has done for brands that
-          decided to stop guessing and start building a real content system.
+          Not ready for a full agency engagement? Start here. These are the exact templates,
+          frameworks, and tools we use to build content engines — packaged so you can implement
+          them yourself, starting today.
         </motion.p>
       </div>
     </section>

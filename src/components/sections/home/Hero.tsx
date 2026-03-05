@@ -19,7 +19,6 @@ const IMAGES = [
 
 const SIN_72 = Math.sin((72 * Math.PI) / 180)
 const COS_72 = Math.cos((72 * Math.PI) / 180)
-const COS_72_VAL = Math.cos((72 * Math.PI) / 180) // cos(72°) = 0.309
 
 const FEATURES = [
   {
@@ -39,59 +38,6 @@ const FEATURES = [
   },
 ]
 
-// Renders a red arc that traces the top edge of the concave card array.
-//
-// KEY FORMULA — quadratic bezier midpoint:
-//   y(t=0.5) = 0.5·ey + 0.5·cy
-// To make the midpoint land at centerPct, we need:
-//   cy = 2·centerPct − ey
-// We then add an extra 50% amplification so the curve is clearly visible
-// despite the container being much wider than it is tall.
-function TopArc({ edgePct, centerPct }: { edgePct: number; centerPct: number }) {
-  const ey = Math.max(0, edgePct - 2)
-  // Control point that makes the bezier midpoint reach centerPct, then 1.5× amplified
-  const baseControl = 2 * centerPct - ey
-  const cy = baseControl + (baseControl - ey) * 0.5
-  const eyStr = ey.toFixed(1)
-  const cyStr = cy.toFixed(1)
-  return (
-    <svg
-      aria-hidden
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: 1,
-        overflow: 'visible',
-      }}
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-    >
-      {/* Glow layer — thick + transparent */}
-      <path
-        d={`M 10 ${eyStr} Q 50 ${cyStr} 90 ${eyStr}`}
-        stroke="#8B1A1A"
-        strokeWidth="10"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.12"
-        vectorEffect="non-scaling-stroke"
-      />
-      {/* Crisp line */}
-      <path
-        d={`M 10 ${eyStr} Q 50 ${cyStr} 90 ${eyStr}`}
-        stroke="#8B1A1A"
-        strokeWidth="1.4"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.65"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  )
-}
 
 export default function Hero() {
   const [viewportW, setViewportW] = useState(1440)
@@ -132,14 +78,6 @@ export default function Hero() {
     )
     radius = Math.max(minRadius, computedR)
   }
-
-  // Compute where card tops appear in the container (as % of containerH).
-  // Formula: topPct = 50 − 50 × (cardH/containerH) × P / (P + R·cos(θ))
-  // Center card (θ=0, deepest): top appears LOWER (higher %)
-  // Edge card (θ=72°, shallowest visible): top appears HIGHER (lower %)
-  const ratio = (cardH / containerH) * 50
-  const centerTopPct = 50 - ratio * (perspective / (perspective + radius))
-  const edgeTopPct   = 50 - ratio * (perspective / (perspective + radius * COS_72_VAL))
 
   return (
     <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
@@ -191,7 +129,7 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="bg-accent text-text-primary font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+            className="bg-accent text-white font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
           >
             Work With Us
           </Link>
@@ -274,35 +212,8 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Red arc — computed to sit directly above the actual card top edge */}
-        {!isMobile && (
-          <TopArc edgePct={edgeTopPct} centerPct={centerTopPct} />
-        )}
-
         {/* Edge fade */}
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            zIndex: 2,
-            background: [
-              'linear-gradient(to right,',
-              '  #0A0A0A 0%,',
-              '  rgba(10,10,10,0.92) 7%,',
-              '  rgba(10,10,10,0.65) 14%,',
-              '  rgba(10,10,10,0.25) 21%,',
-              '  transparent 28%,',
-              '  transparent 72%,',
-              '  rgba(10,10,10,0.25) 79%,',
-              '  rgba(10,10,10,0.65) 86%,',
-              '  rgba(10,10,10,0.92) 93%,',
-              '  #0A0A0A 100%',
-              ')',
-            ].join(' '),
-          }}
-        />
+        <div aria-hidden className="carousel-edge-fade" />
 
         {/* Reveal overlay */}
         <motion.div
@@ -313,7 +224,7 @@ export default function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: '#0A0A0A',
+            background: 'var(--color-bg-primary)',
             pointerEvents: 'none',
             zIndex: 3,
           }}

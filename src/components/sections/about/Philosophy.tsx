@@ -63,16 +63,7 @@ export default function Philosophy() {
             const Icon = pillar.icon
             return (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div
-                  className="bg-bg-card border border-border rounded-sm p-8 transition-colors duration-300 hover:border-accent"
-                  style={{ borderColor: 'rgba(36,36,36,1)' }}
-                  onMouseEnter={e => {
-                    ;(e.currentTarget as HTMLElement).style.borderColor = '#8B1A1A'
-                  }}
-                  onMouseLeave={e => {
-                    ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(36,36,36,1)'
-                  }}
-                >
+                <div className="bg-bg-card border border-border rounded-sm p-8 transition-colors duration-300 hover:border-accent">
                   <Icon size={32} className="text-accent mb-5" />
                   <h3 className="font-display text-display-md text-text-primary mb-3">
                     {pillar.title}

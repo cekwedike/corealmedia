@@ -5,7 +5,8 @@ const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/work' },
+  { label: 'Results', href: '/work' },
+  { label: 'Products', href: '/products' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
 ]
@@ -81,7 +82,7 @@ export default function Footer() {
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-text-primary font-body text-[0.8125rem] font-medium px-5 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-accent text-white font-body text-[0.8125rem] font-medium px-5 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
               <ArrowRight size={14} />

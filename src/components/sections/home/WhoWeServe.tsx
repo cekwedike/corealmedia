@@ -55,7 +55,7 @@ export default function WhoWeServe() {
             const Icon = client.icon
             return (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="flex flex-col gap-4 py-6 pl-7 pr-6 border-l-2 border-accent bg-[rgba(17,17,17,0.6)]">
+                <div className="flex flex-col gap-4 py-6 pl-7 pr-6 border-l-2 border-accent bg-bg-card">
                   <Icon size={24} className="text-accent" />
                   <h3 className="font-display text-display-md text-text-primary">
                     {client.title}

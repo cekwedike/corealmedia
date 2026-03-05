@@ -69,7 +69,7 @@ export default function ThankYouPage() {
 
         <Link
           href="/services"
-          className="inline-block bg-accent text-text-primary font-body text-body-sm font-medium px-7 py-3 rounded-sm hover:bg-accent-hover transition-colors duration-200 mb-5"
+          className="inline-block bg-accent text-white font-body text-body-sm font-medium px-7 py-3 rounded-sm hover:bg-accent-hover transition-colors duration-200 mb-5"
         >
           Explore Our Services
         </Link>

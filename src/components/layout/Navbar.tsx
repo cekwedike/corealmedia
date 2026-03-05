@@ -3,15 +3,17 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Instagram, Linkedin } from 'lucide-react'
+import { Menu, X, Instagram, Linkedin, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/lib/theme'
 
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/work' },
+  { label: 'Results', href: '/work' },
+  { label: 'Products', href: '/products' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -19,6 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -41,11 +44,10 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'bg-[rgba(10,10,10,0.9)] backdrop-blur-md border-b border-border-subtle'
-            : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md',
+          scrolled ? 'border-b border-border-subtle' : 'bg-transparent'
         )}
+        style={scrolled ? { backgroundColor: 'rgba(var(--bg-primary-rgb), 0.9)' } : undefined}
       >
         <div className="container-site flex items-center justify-between h-[72px]">
           {/* Logo */}
@@ -74,24 +76,40 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex">
+          {/* Desktop CTA + Theme Toggle */}
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="text-text-secondary hover:text-text-primary transition-colors duration-200 p-2 focus:outline-none"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <Link
               href="/contact"
-              className="bg-accent text-text-primary font-body text-[0.875rem] font-medium px-6 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+              className="bg-accent text-white font-body text-[0.875rem] font-medium px-6 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
             </Link>
           </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="lg:hidden text-text-primary p-2"
-            aria-label="Open navigation menu"
-          >
-            <Menu size={24} />
-          </button>
+          {/* Mobile: Theme toggle + Hamburger */}
+          <div className="lg:hidden flex items-center gap-1">
+            <button
+              onClick={toggleTheme}
+              className="text-text-secondary hover:text-text-primary transition-colors duration-200 p-2 focus:outline-none"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="text-text-primary p-2"
+              aria-label="Open navigation menu"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -156,7 +174,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="bg-accent text-text-primary font-body text-[0.875rem] font-medium px-8 py-3 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+                  className="bg-accent text-white font-body text-[0.875rem] font-medium px-8 py-3 rounded-sm hover:bg-accent-hover transition-colors duration-200"
                 >
                   Work With Us
                 </Link>

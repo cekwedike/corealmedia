@@ -15,6 +15,24 @@
   --color-accent-light: rgba(139, 26, 26, 0.15);
   --color-border: #242424;
   --color-border-subtle: #1A1A1A;
+  /* RGB components for alpha-channel carousel fade */
+  --bg-primary-rgb: 10, 10, 10;
+}
+
+[data-theme="light"] {
+  --color-bg-primary: #F9F8F5;
+  --color-bg-secondary: #F2F0EC;
+  --color-bg-card: #ECEAE6;
+  --color-bg-elevated: #E6E4E0;
+  --color-text-primary: #141414;
+  --color-text-secondary: #5C5C5C;
+  --color-text-muted: #A0A0A0;
+  --color-accent: #8B1A1A;
+  --color-accent-hover: #A52020;
+  --color-accent-light: rgba(139, 26, 26, 0.1);
+  --color-border: #D4D2CE;
+  --color-border-subtle: #E6E4E0;
+  --bg-primary-rgb: 249, 248, 245;
 }
 
 @layer base {
@@ -89,6 +107,26 @@
       padding-left: 4rem;
       padding-right: 4rem;
     }
+  }
+
+  .carousel-edge-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+      to right,
+      rgb(var(--bg-primary-rgb)) 0%,
+      rgba(var(--bg-primary-rgb), 0.92) 7%,
+      rgba(var(--bg-primary-rgb), 0.65) 14%,
+      rgba(var(--bg-primary-rgb), 0.25) 21%,
+      transparent 28%,
+      transparent 72%,
+      rgba(var(--bg-primary-rgb), 0.25) 79%,
+      rgba(var(--bg-primary-rgb), 0.65) 86%,
+      rgba(var(--bg-primary-rgb), 0.92) 93%,
+      rgb(var(--bg-primary-rgb)) 100%
+    );
   }
 
   .section-padding {

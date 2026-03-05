@@ -6,9 +6,7 @@ import ScrollReveal from '@/components/shared/ScrollReveal'
 
 export default function HomeCTA() {
   return (
-    <section className="section-padding border-t border-border-subtle"
-      style={{ background: 'linear-gradient(to bottom, #111111, #161616)' }}
-    >
+    <section className="bg-bg-secondary section-padding border-t border-border-subtle">
       <div className="container-site text-center max-w-2xl mx-auto">
         <ScrollReveal>
           <h2 className="font-display text-display-lg text-text-primary mb-5">
@@ -20,7 +18,7 @@ export default function HomeCTA() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-text-primary font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-accent text-white font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
           >
             Start the Conversation
             <ArrowRight size={16} />

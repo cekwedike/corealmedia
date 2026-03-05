@@ -13,16 +13,7 @@ export default function CaseStudyCard({ study }: CaseStudyCardProps) {
   return (
     <Link
       href={`/work/${study.slug}`}
-      className="group block bg-bg-card border border-border rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1"
-      style={{
-        borderColor: 'rgba(36,36,36,1)',
-      }}
-      onMouseEnter={e => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(139,26,26,0.4)'
-      }}
-      onMouseLeave={e => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(36,36,36,1)'
-      }}
+      className="group block bg-bg-card border border-border rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(139,26,26,0.4)]"
     >
       {/* Featured image */}
       <div className="relative w-full aspect-video overflow-hidden bg-bg-secondary">

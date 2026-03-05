@@ -5,14 +5,14 @@ import CTABanner from '@/components/shared/CTABanner'
 import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
-  title: 'Our Work | Coréal Media',
+  title: 'Results | Coréal Media',
   description:
     'See how Coréal Media has helped founders and brands build consistent, high-quality content systems that generate trust, visibility, and growth.',
   openGraph: {
-    title: 'Our Work | Coréal Media',
+    title: 'Results | Coréal Media',
     description: 'Real results from real brands. Browse case studies from Coréal Media clients.',
     url: 'https://corealmedia.com/work',
-    images: [{ url: '/images/og/og-work.jpg', width: 1200, height: 630, alt: 'Our Work — Coréal Media' }],
+    images: [{ url: '/images/og/og-work.jpg', width: 1200, height: 630, alt: 'Results — Coréal Media' }],
   },
 }
 
