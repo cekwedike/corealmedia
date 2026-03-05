@@ -1,43 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Layers, Settings2, TrendingUp } from 'lucide-react'
 
+// 6 portrait images — face-focused, diverse
 const IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', alt: 'Creative professional' },
-  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80', alt: 'Brand strategist' },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', alt: 'Content creator' },
-  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', alt: 'Creative director' },
-  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80', alt: 'Social media lead' },
-  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80', alt: 'Growth strategist' },
-  { src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80', alt: 'Marketing director' },
-  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
+  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80', alt: 'Creative professional' },
+  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80', alt: 'Brand strategist' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80', alt: 'Content creator' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', alt: 'Creative director' },
+  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80', alt: 'Social media lead' },
+  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80', alt: 'Growth strategist' },
 ]
 
-// 7 card slots. Each has a fixed rotateY and size.
-// Outer cards are larger — they overflow/clip at viewport edges exactly like the reference.
-// imageOffset: which image (relative to activeIndex) shows in this slot.
-const SLOTS = [
-  { rotateY: -44, w: 214, h: 440, imageOffset: -3 },
-  { rotateY: -22, w: 188, h: 400, imageOffset: -2 },
-  { rotateY: -10, w: 170, h: 368, imageOffset: -1 },
-  { rotateY:   0, w: 162, h: 350, imageOffset:  0 },
-  { rotateY:  10, w: 170, h: 368, imageOffset:  1 },
-  { rotateY:  22, w: 188, h: 400, imageOffset:  2 },
-  { rotateY:  44, w: 214, h: 440, imageOffset:  3 },
-]
-
-// Mobile: 5 cards, ~65% scale
-const MOBILE_SLOTS = [
-  { rotateY: -32, w: 118, h: 260, imageOffset: -2 },
-  { rotateY: -14, w: 106, h: 234, imageOffset: -1 },
-  { rotateY:   0, w: 100, h: 216, imageOffset:  0 },
-  { rotateY:  14, w: 106, h: 234, imageOffset:  1 },
-  { rotateY:  32, w: 118, h: 260, imageOffset:  2 },
-]
+const CARD_COUNT = IMAGES.length
+const ANGLE_STEP = 360 / CARD_COUNT // 60° apart for 6 cards
 
 const FEATURES = [
   {
@@ -58,9 +38,7 @@ const FEATURES = [
 ]
 
 export default function Hero() {
-  const [activeIndex, setActiveIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
-  const total = IMAGES.length
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
@@ -69,17 +47,15 @@ export default function Hero() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Auto-advance every 3.5s — only the images crossfade, card positions never move
-  useEffect(() => {
-    const timer = setInterval(() => setActiveIndex(p => (p + 1) % total), 3500)
-    return () => clearInterval(timer)
-  }, [total])
-
-  const slots = isMobile ? MOBILE_SLOTS : SLOTS
+  // Cylinder parameters
+  const perspective = isMobile ? 500 : 1000
+  const translateZ = isMobile ? 260 : 420
+  const cardW = isMobile ? 130 : 180
+  const cardH = isMobile ? 190 : 260
 
   return (
-    <section className="relative bg-bg-primary flex flex-col items-center overflow-hidden pt-28 pb-0">
-      {/* Subtle radial accent glow at top */}
+    <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
+      {/* Radial accent glow */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -89,7 +65,7 @@ export default function Hero() {
       />
 
       {/* Text content */}
-      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-10">
+      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-12">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -140,77 +116,94 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── 3D Perspective Arc Carousel ── */}
-      {/* perspective is set on the PARENT of the cards so each card's rotateY creates a 3D curve */}
+      {/* ── 3D Cylinder Carousel ── */}
+      {/*
+        Outer wrapper: perspective context + horizontal mask fade
+        Middle div: perspective origin
+        Inner motion.div: transform-style preserve-3d, spins Y axis continuously
+        Each card: position absolute, centered at origin, pushed out via rotateY + translateZ
+      */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.65, ease: 'easeOut' }}
-        className="w-full flex items-end justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.65 }}
         style={{
-          perspective: '1400px',
-          perspectiveOrigin: '50% 100%',
+          // Break out of container — full viewport width
+          width: '100vw',
+          position: 'relative',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          overflow: 'hidden',
+          // Mask fades only the very edges
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          maskImage:
+            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          height: cardH + 60,
         }}
       >
+        {/* Perspective wrapper — centered, cylinder radiates outward from here */}
         <div
-          className="flex items-end justify-center"
-          style={{ gap: isMobile ? '6px' : '8px' }}
+          style={{
+            perspective: `${perspective}px`,
+            perspectiveOrigin: '50% 50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+          }}
         >
-          {slots.map((slot, i) => {
-            const imgIdx = ((activeIndex + slot.imageOffset) % total + total) % total
-            const image = IMAGES[imgIdx]
-            // Darker overlay on outer cards to fade them into the background
-            const overlayOpacity = 0.08 + Math.abs(slot.imageOffset) * 0.07
-
-            return (
-              <div
-                key={i}
-                style={{
-                  width: slot.w,
-                  height: slot.h,
-                  flexShrink: 0,
-                  borderRadius: 14,
-                  overflow: 'hidden',
-                  transform: `rotateY(${slot.rotateY}deg)`,
-                  boxShadow:
-                    slot.imageOffset === 0
-                      ? '0 20px 60px rgba(0,0,0,0.65)'
-                      : '0 10px 40px rgba(0,0,0,0.5)',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                  position: 'relative',
-                }}
-              >
-                {/* Crossfade: image src is key — AnimatePresence swaps on change */}
-                <AnimatePresence mode="sync" initial={false}>
-                  <motion.div
-                    key={image.src}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.6, ease: 'easeInOut' }}
-                    style={{ position: 'absolute', inset: 0 }}
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover object-top"
-                      sizes={`${slot.w}px`}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Overlay — outer cards are progressively darker */}
+          {/* Spinning cylinder — rotates Y from 0 to 360 continuously */}
+          <motion.div
+            animate={{ rotateY: 360 }}
+            transition={{
+              duration: 18,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+            style={{
+              transformStyle: 'preserve-3d',
+              width: cardW,
+              height: cardH,
+              position: 'relative',
+            }}
+          >
+            {IMAGES.map((image, i) => {
+              const angle = i * ANGLE_STEP
+              return (
                 <div
-                  className="absolute inset-0 pointer-events-none"
+                  key={i}
                   style={{
-                    background: `rgba(0,0,0,${overlayOpacity})`,
-                    zIndex: 2,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: cardW,
+                    height: cardH,
+                    borderRadius: 14,
+                    overflow: 'hidden',
+                    transform: `rotateY(${angle}deg) translateZ(${translateZ}px)`,
+                    backfaceVisibility: 'hidden',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    boxShadow: '0 16px 48px rgba(0,0,0,0.6)',
                   }}
-                />
-              </div>
-            )
-          })}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes={`${cardW}px`}
+                  />
+                  {/* Subtle darkening overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'rgba(0,0,0,0.15)' }}
+                  />
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
       </motion.div>
 
@@ -219,7 +212,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="w-full bg-bg-secondary border-t border-border-subtle mt-0"
+        className="w-full bg-bg-secondary border-t border-border-subtle mt-10"
       >
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border-subtle">
