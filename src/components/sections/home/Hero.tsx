@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Layers, Settings2, TrendingUp } from 'lucide-react'
 
-// 8 unique portrait images — face-focused, diverse
 const IMAGES = [
   { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', alt: 'Creative professional' },
   { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80', alt: 'Brand strategist' },
@@ -18,15 +17,14 @@ const IMAGES = [
   { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
 ]
 
-const CARD_COUNT = 16
-const ANGLE_STEP = 360 / CARD_COUNT // 22.5°
-
-// sin/cos of θ=67.5° — the outermost clearly-visible card in the front arc.
-// Used to compute the radius that makes the arc fill the viewport width.
-// Derivation: screenX = R·sin(θ)·P / (P + R·cos(θ)) = targetX
-//             → R = targetX·P / (SIN_OUTER·P − COS_OUTER·targetX)
-const SIN_OUTER = Math.sin((67.5 * Math.PI) / 180) // 0.9239
-const COS_OUTER = Math.cos((67.5 * Math.PI) / 180) // 0.3827
+// Desktop: 20 cards × 18° — outermost clearly visible card sits at θ = 72° (4 steps × 18°)
+// Mobile:  16 cards × 22.5° — outermost sits at θ = 67.5° (3 steps × 22.5°)
+// These angles drive the viewport-fill radius formula:
+//   screenX = R·sin(θ)·P / (P + R·cos(θ)) → R = targetX·P / (sin(θ)·P − cos(θ)·targetX)
+const SIN_OUTER_D = Math.sin((72 * Math.PI) / 180)    // 0.9511  (desktop)
+const COS_OUTER_D = Math.cos((72 * Math.PI) / 180)    // 0.3090
+const SIN_OUTER_M = Math.sin((67.5 * Math.PI) / 180)  // 0.9239  (mobile)
+const COS_OUTER_M = Math.cos((67.5 * Math.PI) / 180)  // 0.3827
 
 const FEATURES = [
   {
@@ -58,20 +56,24 @@ export default function Hero() {
 
   const isMobile = viewportW < 768
 
-  // Card dimensions — desktop scales with viewport (capped), mobile fixed
+  // 20 cards desktop (tighter arc), 16 mobile
+  const cardCount = isMobile ? 16 : 20
+  const angleStep = 360 / cardCount
+  const sinOuter  = isMobile ? SIN_OUTER_M : SIN_OUTER_D
+  const cosOuter  = isMobile ? COS_OUTER_M : COS_OUTER_D
+
+  // Card dimensions — taller aspect (1.6) for more presence; desktop scales with viewport
   const cardW = isMobile ? 130 : Math.min(320, Math.max(260, Math.round(viewportW * 0.17)))
-  const cardH = Math.round(cardW * 1.38)
+  const cardH = Math.round(cardW * 1.6)
 
-  // Perspective relative to viewport so depth feel stays consistent at all screen sizes
-  const perspective = Math.round(viewportW * (isMobile ? 0.7 : 1.0))
+  // Perspective at 0.75× viewport → stronger depth / more "into the page" feel
+  const perspective = Math.round(viewportW * (isMobile ? 0.7 : 0.75))
 
-  // Radius: sized so the card at θ=67.5° (3rd from center, outermost fully visible)
-  // projects to ~90% of the viewport half-width. Ensures full-width coverage at any screen size.
-  const targetX = viewportW * 0.5 * 0.9 - cardW / 2
-  // Minimum radius so adjacent cards never overlap on the arc
-  const minRadius = Math.ceil(((cardW + 4) * CARD_COUNT) / (2 * Math.PI))
+  // Radius: sized so the outermost visible card projects to ~90% of viewport half-width
+  const targetX   = viewportW * 0.5 * 0.9 - cardW / 2
+  const minRadius = Math.ceil(((cardW + 4) * cardCount) / (2 * Math.PI))
   const computedRadius = Math.round(
-    (targetX * perspective) / (SIN_OUTER * perspective - COS_OUTER * targetX),
+    (targetX * perspective) / (sinOuter * perspective - cosOuter * targetX),
   )
   const radius = Math.max(minRadius, computedRadius)
 
@@ -139,25 +141,17 @@ export default function Hero() {
       </div>
 
       {/* ── 3D Concave Cylinder Carousel ──
-        HOW IT WORKS:
-          translateZ is NEGATIVE → cards curve AWAY from viewer (concave, "into the page").
-          The center card is the DEEPEST point; outer cards wrap toward the viewer on the sides.
-          backfaceVisibility:hidden → only back-arc cards are visible (the concave side facing us).
-          The front-arc cards (the ones that would bulge toward viewer) are hidden.
-
-        PRESERVE-3D RULES (must not break):
-          • No ancestor div has opacity < 1, overflow:hidden, or mask/filter
-          • Fade-in: a solid overlay div on TOP fades opacity 1→0 (sibling, not parent)
-          • Edge fading: solid background-color gradient overlay (sibling div, not mask)
+        Cards use translateZ NEGATIVE → curve AWAY from viewer (concave, "into the page").
+        backfaceVisibility:hidden → only the back-arc (concave side) is visible.
+        No ancestor has opacity<1 / overflow:hidden / mask — preserve-3d tree is clean.
+        Edge fade and reveal overlay are siblings, never parents of the 3D tree.
       */}
       <div
         style={{
-          // Break out of container — true full viewport width
           width: '100vw',
           position: 'relative',
           left: '50%',
           transform: 'translateX(-50%)',
-          // Tall enough for cards + breathing room
           height: cardH + 80,
         }}
       >
@@ -173,10 +167,10 @@ export default function Hero() {
             justifyContent: 'center',
           }}
         >
-          {/* Spinning cylinder — ONLY rotateY animates, zero opacity involvement */}
+          {/* Spinning cylinder — ONLY rotateY animates */}
           <motion.div
             animate={{ rotateY: 360 }}
-            transition={{ duration: 16, ease: 'linear', repeat: Infinity }}
+            transition={{ duration: isMobile ? 22 : 30, ease: 'linear', repeat: Infinity }}
             style={{
               transformStyle: 'preserve-3d',
               width: cardW,
@@ -184,8 +178,8 @@ export default function Hero() {
               position: 'relative',
             }}
           >
-            {Array.from({ length: CARD_COUNT }).map((_, i) => {
-              const angle = i * ANGLE_STEP
+            {Array.from({ length: cardCount }).map((_, i) => {
+              const angle = i * angleStep
               const image = IMAGES[i % IMAGES.length]
               return (
                 <div
@@ -198,10 +192,9 @@ export default function Hero() {
                     height: cardH,
                     borderRadius: 12,
                     overflow: 'hidden',
-                    // NEGATIVE translateZ → concave inward projection
+                    // Negative translateZ → concave inward projection
                     transform: `rotateY(${angle}deg) translateZ(-${radius}px)`,
-                    // Hide the front-arc cards (those facing TOWARD viewer) —
-                    // only back-arc cards (facing away = concave side) are visible
+                    // Hide front-arc cards (facing viewer) — show only back-arc (concave side)
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     border: '1px solid rgba(255,255,255,0.06)',
@@ -215,7 +208,6 @@ export default function Hero() {
                     className="object-cover object-top"
                     sizes={`${cardW}px`}
                   />
-                  {/* Subtle darkening overlay */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{ background: 'rgba(0,0,0,0.1)' }}
@@ -226,7 +218,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Edge fade — solid bg-color gradient, sits on top of 3D scene as sibling */}
+        {/* Edge fade — narrow 6% gradient so the full arc stays visible */}
         <div
           aria-hidden
           style={{
