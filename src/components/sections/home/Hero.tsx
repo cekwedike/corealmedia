@@ -17,14 +17,12 @@ const IMAGES = [
   { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
 ]
 
-// Desktop: 20 cards × 18° — outermost clearly visible card sits at θ = 72° (4 steps × 18°)
-// Mobile:  16 cards × 22.5° — outermost sits at θ = 67.5° (3 steps × 22.5°)
-// These angles drive the viewport-fill radius formula:
-//   screenX = R·sin(θ)·P / (P + R·cos(θ)) → R = targetX·P / (sin(θ)·P − cos(θ)·targetX)
-const SIN_OUTER_D = Math.sin((72 * Math.PI) / 180)    // 0.9511  (desktop)
-const COS_OUTER_D = Math.cos((72 * Math.PI) / 180)    // 0.3090
-const SIN_OUTER_M = Math.sin((67.5 * Math.PI) / 180)  // 0.9239  (mobile)
-const COS_OUTER_M = Math.cos((67.5 * Math.PI) / 180)  // 0.3827
+// Desktop: 20 cards × 18° — outermost visible card at θ = 72° (4 steps)
+// Used in the viewport-fill radius formula:
+//   screenX = R·sin(θ)·P / (P + R·cos(θ)) = targetX
+//   → R = targetX·P / (sin(θ)·P − cos(θ)·targetX)
+const SIN_72 = Math.sin((72 * Math.PI) / 180) // 0.9511
+const COS_72 = Math.cos((72 * Math.PI) / 180) // 0.3090
 
 const FEATURES = [
   {
@@ -56,26 +54,33 @@ export default function Hero() {
 
   const isMobile = viewportW < 768
 
-  // 20 cards desktop (tighter arc), 16 mobile
-  const cardCount = isMobile ? 16 : 20
+  // Desktop: 20 cards × 18°, tighter arc
+  // Mobile:  12 cards × 30° — shows 3 prominent cards without shrinking the 3D effect
+  const cardCount = isMobile ? 12 : 20
   const angleStep = 360 / cardCount
-  const sinOuter  = isMobile ? SIN_OUTER_M : SIN_OUTER_D
-  const cosOuter  = isMobile ? COS_OUTER_M : COS_OUTER_D
 
-  // Card dimensions — taller aspect (1.6) for more presence; desktop scales with viewport
-  const cardW = isMobile ? 130 : Math.min(320, Math.max(260, Math.round(viewportW * 0.17)))
+  // Mobile uses large fixed cards (not shrunken) so the 3D effect stays impactful
+  const cardW = isMobile ? 180 : Math.min(320, Math.max(260, Math.round(viewportW * 0.17)))
   const cardH = Math.round(cardW * 1.6)
 
-  // Perspective at 0.75× viewport → stronger depth / more "into the page" feel
-  const perspective = Math.round(viewportW * (isMobile ? 0.7 : 0.75))
+  // Consistent 0.75× viewport perspective for strong depth on both platforms
+  const perspective = Math.round(viewportW * 0.75)
 
-  // Radius: sized so the outermost visible card projects to ~90% of viewport half-width
-  const targetX   = viewportW * 0.5 * 0.9 - cardW / 2
+  // Minimum radius so adjacent cards never overlap on the arc
   const minRadius = Math.ceil(((cardW + 4) * cardCount) / (2 * Math.PI))
-  const computedRadius = Math.round(
-    (targetX * perspective) / (sinOuter * perspective - cosOuter * targetX),
-  )
-  const radius = Math.max(minRadius, computedRadius)
+
+  // Desktop: computed so outermost card (θ=72°) projects to ~85% of viewport half-width.
+  // Mobile: use minRadius directly — the arc fills the mobile screen naturally.
+  let radius: number
+  if (isMobile) {
+    radius = minRadius
+  } else {
+    const targetX = viewportW * 0.5 * 0.85 - cardW / 2
+    const computedR = Math.round(
+      (targetX * perspective) / (SIN_72 * perspective - COS_72 * targetX),
+    )
+    radius = Math.max(minRadius, computedR)
+  }
 
   return (
     <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
@@ -218,7 +223,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Edge fade — narrow 6% gradient so the full arc stays visible */}
+        {/* Edge fade — 15% gradient for natural fade-into-background (not forced full-width) */}
         <div
           aria-hidden
           style={{
@@ -226,7 +231,7 @@ export default function Hero() {
             inset: 0,
             pointerEvents: 'none',
             background:
-              'linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0) 6%, rgba(10,10,10,0) 94%, #0A0A0A 100%)',
+              'linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0) 15%, rgba(10,10,10,0) 85%, #0A0A0A 100%)',
           }}
         />
 
