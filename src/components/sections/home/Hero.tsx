@@ -6,18 +6,27 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Layers, Settings2, TrendingUp } from 'lucide-react'
 
-// 6 portrait images — face-focused, diverse
+// 8 unique portrait images — face-focused, diverse
 const IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80', alt: 'Creative professional' },
-  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80', alt: 'Brand strategist' },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80', alt: 'Content creator' },
-  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', alt: 'Creative director' },
-  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80', alt: 'Social media lead' },
-  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80', alt: 'Growth strategist' },
+  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', alt: 'Creative professional' },
+  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80', alt: 'Brand strategist' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', alt: 'Content creator' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', alt: 'Creative director' },
+  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80', alt: 'Social media lead' },
+  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80', alt: 'Growth strategist' },
+  { src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80', alt: 'Marketing director' },
+  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
 ]
 
-const CARD_COUNT = IMAGES.length
-const ANGLE_STEP = 360 / CARD_COUNT // 60° apart for 6 cards
+const CARD_COUNT = 16
+const ANGLE_STEP = 360 / CARD_COUNT // 22.5°
+
+// sin/cos of θ=67.5° — the outermost clearly-visible card in the front arc.
+// Used to compute the radius that makes the arc fill the viewport width.
+// Derivation: screenX = R·sin(θ)·P / (P + R·cos(θ)) = targetX
+//             → R = targetX·P / (SIN_OUTER·P − COS_OUTER·targetX)
+const SIN_OUTER = Math.sin((67.5 * Math.PI) / 180) // 0.9239
+const COS_OUTER = Math.cos((67.5 * Math.PI) / 180) // 0.3827
 
 const FEATURES = [
   {
@@ -38,20 +47,33 @@ const FEATURES = [
 ]
 
 export default function Hero() {
-  const [isMobile, setIsMobile] = useState(false)
+  const [viewportW, setViewportW] = useState(1440)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
+    const update = () => setViewportW(window.innerWidth)
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
   }, [])
 
-  // Cylinder parameters
-  const perspective = isMobile ? 500 : 1000
-  const translateZ = isMobile ? 260 : 420
-  const cardW = isMobile ? 130 : 180
-  const cardH = isMobile ? 190 : 260
+  const isMobile = viewportW < 768
+
+  // Card dimensions — desktop scales with viewport (capped), mobile fixed
+  const cardW = isMobile ? 130 : Math.min(320, Math.max(260, Math.round(viewportW * 0.17)))
+  const cardH = Math.round(cardW * 1.38)
+
+  // Perspective relative to viewport so depth feel stays consistent at all screen sizes
+  const perspective = Math.round(viewportW * (isMobile ? 0.7 : 1.0))
+
+  // Radius: sized so the card at θ=67.5° (3rd from center, outermost fully visible)
+  // projects to ~90% of the viewport half-width. Ensures full-width coverage at any screen size.
+  const targetX = viewportW * 0.5 * 0.9 - cardW / 2
+  // Minimum radius so adjacent cards never overlap on the arc
+  const minRadius = Math.ceil(((cardW + 4) * CARD_COUNT) / (2 * Math.PI))
+  const computedRadius = Math.round(
+    (targetX * perspective) / (SIN_OUTER * perspective - COS_OUTER * targetX),
+  )
+  const radius = Math.max(minRadius, computedRadius)
 
   return (
     <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
@@ -65,7 +87,7 @@ export default function Hero() {
       />
 
       {/* Text content */}
-      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-12">
+      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-14">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -116,52 +138,45 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── 3D Cylinder Carousel ── */}
-      {/*
-        Outer wrapper: perspective context + horizontal mask fade
-        Middle div: perspective origin
-        Inner motion.div: transform-style preserve-3d, spins Y axis continuously
-        Each card: position absolute, centered at origin, pushed out via rotateY + translateZ
+      {/* ── 3D Concave Cylinder Carousel ──
+        HOW IT WORKS:
+          translateZ is NEGATIVE → cards curve AWAY from viewer (concave, "into the page").
+          The center card is the DEEPEST point; outer cards wrap toward the viewer on the sides.
+          backfaceVisibility:hidden → only back-arc cards are visible (the concave side facing us).
+          The front-arc cards (the ones that would bulge toward viewer) are hidden.
+
+        PRESERVE-3D RULES (must not break):
+          • No ancestor div has opacity < 1, overflow:hidden, or mask/filter
+          • Fade-in: a solid overlay div on TOP fades opacity 1→0 (sibling, not parent)
+          • Edge fading: solid background-color gradient overlay (sibling div, not mask)
       */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.65 }}
+      <div
         style={{
-          // Break out of container — full viewport width
+          // Break out of container — true full viewport width
           width: '100vw',
           position: 'relative',
           left: '50%',
           transform: 'translateX(-50%)',
-          overflow: 'hidden',
-          // Mask fades only the very edges
-          WebkitMaskImage:
-            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-          maskImage:
-            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-          height: cardH + 60,
+          // Tall enough for cards + breathing room
+          height: cardH + 80,
         }}
       >
-        {/* Perspective wrapper — centered, cylinder radiates outward from here */}
+        {/* Perspective context — no overflow, no opacity, no filter */}
         <div
           style={{
             perspective: `${perspective}px`,
             perspectiveOrigin: '50% 50%',
+            width: '100%',
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%',
-            height: '100%',
           }}
         >
-          {/* Spinning cylinder — rotates Y from 0 to 360 continuously */}
+          {/* Spinning cylinder — ONLY rotateY animates, zero opacity involvement */}
           <motion.div
             animate={{ rotateY: 360 }}
-            transition={{
-              duration: 18,
-              ease: 'linear',
-              repeat: Infinity,
-            }}
+            transition={{ duration: 16, ease: 'linear', repeat: Infinity }}
             style={{
               transformStyle: 'preserve-3d',
               width: cardW,
@@ -169,8 +184,9 @@ export default function Hero() {
               position: 'relative',
             }}
           >
-            {IMAGES.map((image, i) => {
+            {Array.from({ length: CARD_COUNT }).map((_, i) => {
               const angle = i * ANGLE_STEP
+              const image = IMAGES[i % IMAGES.length]
               return (
                 <div
                   key={i}
@@ -180,12 +196,16 @@ export default function Hero() {
                     left: 0,
                     width: cardW,
                     height: cardH,
-                    borderRadius: 14,
+                    borderRadius: 12,
                     overflow: 'hidden',
-                    transform: `rotateY(${angle}deg) translateZ(${translateZ}px)`,
+                    // NEGATIVE translateZ → concave inward projection
+                    transform: `rotateY(${angle}deg) translateZ(-${radius}px)`,
+                    // Hide the front-arc cards (those facing TOWARD viewer) —
+                    // only back-arc cards (facing away = concave side) are visible
                     backfaceVisibility: 'hidden',
-                    border: '1px solid rgba(255,255,255,0.07)',
-                    boxShadow: '0 16px 48px rgba(0,0,0,0.6)',
+                    WebkitBackfaceVisibility: 'hidden',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
                   }}
                 >
                   <Image
@@ -198,21 +218,47 @@ export default function Hero() {
                   {/* Subtle darkening overlay */}
                   <div
                     className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'rgba(0,0,0,0.15)' }}
+                    style={{ background: 'rgba(0,0,0,0.1)' }}
                   />
                 </div>
               )
             })}
           </motion.div>
         </div>
-      </motion.div>
+
+        {/* Edge fade — solid bg-color gradient, sits on top of 3D scene as sibling */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            background:
+              'linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0) 6%, rgba(10,10,10,0) 94%, #0A0A0A 100%)',
+          }}
+        />
+
+        {/* Reveal overlay — fades OUT (opacity 1→0). Sibling, not parent — 3D tree unaffected */}
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 0.8, delay: 0.65 }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: '#0A0A0A',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
 
       {/* Feature Strip */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="w-full bg-bg-secondary border-t border-border-subtle mt-10"
+        className="w-full bg-bg-secondary border-t border-border-subtle mt-8"
       >
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border-subtle">
