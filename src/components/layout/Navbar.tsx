@@ -87,7 +87,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="bg-accent text-white font-body text-[0.875rem] font-medium px-6 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+              className="bg-accent text-white font-body text-body-sm font-medium px-6 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
             </Link>
@@ -174,7 +174,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="bg-accent text-white font-body text-[0.875rem] font-medium px-8 py-3 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+                  className="bg-accent text-white font-body text-body-sm font-medium px-8 py-3 rounded-md hover:bg-accent-hover transition-colors duration-200"
                 >
                   Work With Us
                 </Link>

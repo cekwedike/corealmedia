@@ -22,7 +22,7 @@ const SERVICE_OPTIONS = [
 ]
 
 const inputClass =
-  'w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors duration-200'
+  'w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors duration-200'
 const labelClass = 'block font-body text-body-sm text-text-secondary mb-2'
 const errorClass = 'font-body text-body-sm mt-1.5' + ' ' + 'text-[#CF4444]'
 
@@ -181,7 +181,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>

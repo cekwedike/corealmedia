@@ -82,7 +82,7 @@ export default function Footer() {
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white font-body text-[0.8125rem] font-medium px-5 py-2.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-5 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
               <ArrowRight size={14} />

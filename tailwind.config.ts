@@ -36,7 +36,7 @@ const config: Config = {
         // Body: clamp preserves current mobile sizes, scales up on larger screens
         'body-lg': ['clamp(1.125rem, 1.5vw, 1.375rem)', { lineHeight: '1.75' }],
         'body-md': ['clamp(1rem, 1.25vw, 1.25rem)', { lineHeight: '1.7' }],
-        'body-sm': ['clamp(0.875rem, 1vw, 1.0625rem)', { lineHeight: '1.65' }],
+        'body-sm': ['clamp(0.875rem, 1.1vw, 1.125rem)', { lineHeight: '1.65' }],
         label: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.1em' }],
       },
       spacing: {

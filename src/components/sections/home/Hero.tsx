@@ -130,13 +130,13 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="bg-accent text-white font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:bg-accent-hover transition-colors duration-200"
+            className="bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
           >
             Work With Us
           </Link>
           <Link
             href="/work"
-            className="border border-border text-text-primary font-body text-[0.875rem] font-medium px-8 py-3.5 rounded-sm hover:border-accent transition-colors duration-200"
+            className="border border-border text-text-primary font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:border-accent transition-colors duration-200"
           >
             See Our Work
           </Link>

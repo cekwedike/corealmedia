@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -64,15 +65,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
-      <head>
-        {/* Anti-flash: apply saved theme before first paint */}
-        <script
+      <body className="bg-bg-primary text-text-primary font-body antialiased">
+        {/* Anti-flash: apply saved theme before hydration */}
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}())`,
           }}
         />
-      </head>
-      <body className="bg-bg-primary text-text-primary font-body antialiased">
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
