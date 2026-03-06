@@ -28,13 +28,15 @@ const config: Config = {
         mono: ['var(--font-dm-mono)', 'monospace'],
       },
       fontSize: {
-        'display-2xl': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        'display-xl': ['clamp(2.5rem, 6vw, 5.5rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
-        'display-lg': ['clamp(2rem, 4vw, 4rem)', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
-        'display-md': ['clamp(1.5rem, 3vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.75' }],
-        'body-md': ['1rem', { lineHeight: '1.7' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.65' }],
+        // Display: same mobile min, bigger vw slope + larger desktop ceiling
+        'display-2xl': ['clamp(3rem, 8vw, 8.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display-xl': ['clamp(2.5rem, 7vw, 6.5rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'display-lg': ['clamp(2rem, 5vw, 5.25rem)', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
+        'display-md': ['clamp(1.5rem, 3.5vw, 3.5rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        // Body: clamp preserves current mobile sizes, scales up on larger screens
+        'body-lg': ['clamp(1.125rem, 1.5vw, 1.375rem)', { lineHeight: '1.75' }],
+        'body-md': ['clamp(1rem, 1.25vw, 1.25rem)', { lineHeight: '1.7' }],
+        'body-sm': ['clamp(0.875rem, 1vw, 1.0625rem)', { lineHeight: '1.65' }],
         label: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.1em' }],
       },
       spacing: {

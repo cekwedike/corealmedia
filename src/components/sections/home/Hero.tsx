@@ -62,7 +62,8 @@ export default function Hero() {
 
   const cardW = isMobile ? 190 : Math.min(380, Math.max(300, Math.round(viewportW * 0.22)))
   const cardH = Math.round(cardW * 1.55)
-  const containerH = cardH + 20
+  // Extra vertical room so card box-shadows don't bleed outside and create a dark line
+  const containerH = cardH + 100
 
   const perspective = Math.round(viewportW * 0.5)
 
@@ -191,7 +192,7 @@ export default function Hero() {
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     border: '1px solid rgba(255,255,255,0.06)',
-                    boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.22)',
                     cursor: 'pointer',
                   }}
                 >
@@ -212,8 +213,33 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Edge fade */}
+        {/* Side edge fade (left/right) */}
         <div aria-hidden className="carousel-edge-fade" />
+
+        {/* Top fade — blends card shadows into page bg */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0,
+            height: 60,
+            background: 'linear-gradient(to bottom, var(--color-bg-primary) 0%, transparent 100%)',
+            pointerEvents: 'none',
+            zIndex: 4,
+          }}
+        />
+        {/* Bottom fade */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            bottom: 0, left: 0, right: 0,
+            height: 60,
+            background: 'linear-gradient(to top, var(--color-bg-primary) 0%, transparent 100%)',
+            pointerEvents: 'none',
+            zIndex: 4,
+          }}
+        />
 
         {/* Reveal overlay */}
         <motion.div
