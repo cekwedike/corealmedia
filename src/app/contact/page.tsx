@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import ContactHero from '@/components/sections/contact/ContactHero'
 import ContactForm from '@/components/sections/contact/ContactForm'
+import { JsonLd, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Coréal Media',
+  title: 'Contact Us',
   description:
     "Ready to build your content engine? Get in touch with Coréal Media and let's talk about your brand, your goals, and how we can help you scale.",
   openGraph: {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema('Contact', `${SITE_URL}/contact`)} />
       <ContactHero />
       <ContactForm />
     </>

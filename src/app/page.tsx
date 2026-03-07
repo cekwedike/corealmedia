@@ -6,6 +6,7 @@ import ProcessStrip from '@/components/sections/home/ProcessStrip'
 import WhoWeServe from '@/components/sections/home/WhoWeServe'
 import SocialProof from '@/components/sections/home/SocialProof'
 import HomeCTA from '@/components/sections/home/HomeCTA'
+import { JsonLd, organizationSchema } from '@/components/shared/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Coréal Media | Content Systems for Brands That Scale',
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={organizationSchema} />
       <Hero />
       <ProblemSection />
       <ServicesTeaser />

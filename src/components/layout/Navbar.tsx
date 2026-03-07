@@ -4,24 +4,21 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Instagram, Linkedin, Sun, Moon } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
-
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Results', href: '/work' },
-  { label: 'Products', href: '/products' },
-  { label: 'Contact', href: '/contact' },
-]
+import { mainNavLinks } from '@/data/navigation'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   const { theme, toggleTheme } = useTheme()
+  const prefersReducedMotion = useReducedMotion()
+
+  const menuDuration = prefersReducedMotion ? 0 : 0.3
+  const linkStagger = prefersReducedMotion ? 0 : 0.07
+  const linkDuration = prefersReducedMotion ? 0 : 0.4
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -60,7 +57,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map(link => (
+            {mainNavLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -120,7 +117,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: menuDuration }}
             className="fixed inset-0 z-[100] bg-bg-primary flex flex-col"
           >
             {/* Mobile Menu Header */}
@@ -143,12 +140,12 @@ export default function Navbar() {
 
             {/* Mobile Menu Links */}
             <nav className="flex flex-col items-center justify-center flex-1 gap-8">
-              {navLinks.map((link, index) => (
+              {mainNavLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.07, duration: 0.4 }}
+                  transition={{ delay: index * linkStagger, duration: linkDuration }}
                 >
                   <Link
                     href={link.href}
@@ -166,9 +163,9 @@ export default function Navbar() {
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.07 + 0.1, duration: 0.4 }}
+                transition={{ delay: mainNavLinks.length * linkStagger + 0.1, duration: linkDuration }}
                 className="mt-4"
               >
                 <Link

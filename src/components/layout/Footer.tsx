@@ -1,15 +1,6 @@
 import Link from 'next/link'
 import { Instagram, Linkedin, Mail, ArrowRight } from 'lucide-react'
-
-const quickLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Results', href: '/work' },
-  { label: 'Products', href: '/products' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-]
+import { footerQuickLinks } from '@/data/navigation'
 
 export default function Footer() {
   return (
@@ -55,7 +46,7 @@ export default function Footer() {
               Quick Links
             </p>
             <ul className="flex flex-col gap-3">
-              {quickLinks.map(link => (
+              {footerQuickLinks.map(link => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

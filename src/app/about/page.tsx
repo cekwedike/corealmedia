@@ -5,10 +5,11 @@ import Philosophy from '@/components/sections/about/Philosophy'
 import TeamGrid from '@/components/sections/about/TeamGrid'
 import MissionVision from '@/components/sections/about/MissionVision'
 import CTABanner from '@/components/shared/CTABanner'
+import { JsonLd, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
 import { teamMembers } from '@/data/team'
 
 export const metadata: Metadata = {
-  title: 'About Us | Coréal Media',
+  title: 'About Us',
   description:
     'Coréal Media was built on a simple belief: the future of content is co-created. Learn about our origin story, our philosophy, and the team behind the system.',
   openGraph: {
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema('About Us', `${SITE_URL}/about`)} />
       <AboutHero />
       <BrandStory />
       <Philosophy />

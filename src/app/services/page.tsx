@@ -3,10 +3,11 @@ import ServicesHero from '@/components/sections/services/ServicesHero'
 import ServiceBlock from '@/components/sections/services/ServiceBlock'
 import WorkflowDetail from '@/components/sections/services/WorkflowDetail'
 import CTABanner from '@/components/shared/CTABanner'
+import { JsonLd, serviceSchema, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
 import { services } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: 'Our Services | Coréal Media',
+  title: 'Our Services',
   description:
     'Three ways Coréal Media helps brands scale: The Content OS, The Operational Engine, and The Visibility Matrix.',
   openGraph: {
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema('Services', `${SITE_URL}/services`)} />
       <ServicesHero />
       <ServiceBlock service={services[0]} serviceNumber="01" reversed={false} bg="secondary" />
       <ServiceBlock service={services[1]} serviceNumber="02" reversed={true} bg="primary" />

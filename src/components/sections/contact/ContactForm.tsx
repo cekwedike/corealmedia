@@ -11,6 +11,8 @@ interface FormValues {
   company: string
   service: string
   message: string
+  /** Honeypot: leave empty. Bots that fill this are rejected. */
+  website?: string
 }
 
 const SERVICE_OPTIONS = [
@@ -38,6 +40,10 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormValues) => {
     setServerError('')
+    if (data.website) {
+      router.push('/thank-you')
+      return
+    }
     try {
       const endpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT
       if (!endpoint) throw new Error('Form endpoint not configured.')
@@ -45,7 +51,13 @@ export default function ContactForm() {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          fullName: data.fullName,
+          email: data.email,
+          company: data.company,
+          service: data.service,
+          message: data.message,
+        }),
       })
 
       if (!res.ok) throw new Error('Submission failed. Please try again.')
@@ -66,6 +78,18 @@ export default function ContactForm() {
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
+              {/* Honeypot: hidden from users, bots fill it — do not include in submission */}
+              <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  {...register('website')}
+                />
+              </div>
+
               {/* Full Name */}
               <div>
                 <label htmlFor="fullName" className={labelClass}>

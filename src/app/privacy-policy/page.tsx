@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Coréal Media',
+  title: 'Privacy Policy',
   description:
     'Read the Coréal Media privacy policy to understand how we collect, use, and protect your information.',
   robots: { index: true, follow: false },
