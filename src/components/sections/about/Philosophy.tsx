@@ -1,6 +1,6 @@
 'use client'
 
-import { Cpu, Heart, Zap } from 'lucide-react'
+import { Cpu, Heart, Zap } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const PILLARS = [
@@ -38,7 +38,7 @@ export default function Philosophy() {
         {/* Header — centered */}
         <div className="text-center mb-14">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-5">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5">
               Our Philosophy
             </p>
             <h2 className="font-display text-display-lg text-text-primary max-w-[640px] mx-auto text-balance mb-10">

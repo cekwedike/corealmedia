@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { Mail, Instagram, Linkedin, Loader2 } from 'lucide-react'
+import { Mail, Instagram, Linkedin, Loader2 } from '@/components/ui/Icons3D'
 
 interface FormValues {
   fullName: string

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, Quote } from 'lucide-react'
+import { ArrowLeft, Quote } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 import { CaseStudy } from '@/types/caseStudy'
 import { caseStudies } from '@/data/caseStudies'
@@ -32,20 +32,20 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
         </div>
 
         <div className="container-site relative z-10 max-w-4xl">
-          <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+          <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
             Case Study
           </p>
           <h1 className="font-display text-display-xl text-text-primary mb-4">
             {study.clientType}
           </h1>
           <div className="flex flex-wrap gap-2 mb-5">
-            <span className="font-mono text-text-muted text-label uppercase tracking-widest border border-border-subtle px-3 py-1 rounded-sm">
+            <span className="font-mono text-text-muted text-label-lg uppercase tracking-widest border border-border-subtle px-3 py-1 rounded-sm">
               {study.industry}
             </span>
             {study.servicesUsed.map(s => (
               <span
                 key={s}
-                className="font-mono text-accent text-label uppercase tracking-widest border border-accent px-3 py-1 rounded-sm"
+                className="font-mono text-accent text-label-lg uppercase tracking-widest border border-accent px-3 py-1 rounded-sm"
                 style={{ borderColor: 'rgba(139,26,26,0.5)' }}
               >
                 {s}
@@ -62,7 +62,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
       <section className="bg-bg-secondary section-padding border-t border-border-subtle">
         <div className="container-site max-w-3xl">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Context
             </p>
             <h2 className="font-display text-display-md text-text-primary mb-6">The Situation</h2>
@@ -77,7 +77,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
       <section className="bg-bg-primary section-padding border-t border-border-subtle">
         <div className="container-site max-w-3xl">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Approach
             </p>
             <h2 className="font-display text-display-md text-text-primary mb-6">
@@ -97,7 +97,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
       <section className="bg-bg-secondary section-padding border-t border-border-subtle">
         <div className="container-site max-w-4xl">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Results
             </p>
             <h2 className="font-display text-display-md text-text-primary mb-10">The Outcome</h2>
@@ -112,7 +112,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
                   >
                     {result.value}
                   </p>
-                  <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-3">
+                  <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-3">
                     {result.metric}
                   </p>
                   <p className="font-body text-body-sm text-text-secondary leading-relaxed">
@@ -160,7 +160,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
               href={`/work/${nextStudy.slug}`}
               className="group flex flex-col items-end text-right"
             >
-              <span className="font-mono text-text-muted text-label uppercase tracking-widest mb-1">
+              <span className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-1">
                 Next Case Study
               </span>
               <span className="font-display text-[1.25rem] text-text-primary group-hover:text-accent transition-colors">

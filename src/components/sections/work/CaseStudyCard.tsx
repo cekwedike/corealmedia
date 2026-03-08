@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/ui/Icons3D'
 import { CaseStudy } from '@/types/caseStudy'
 
 interface CaseStudyCardProps {

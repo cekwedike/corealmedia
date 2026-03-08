@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion, useAnimationFrame, useMotionValue } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Layers, Settings2, TrendingUp } from 'lucide-react'
+import { Layers, Settings2, TrendingUp } from '@/components/ui/Icons3D'
 
 const IMAGES = [
   { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', alt: 'Creative professional' },
@@ -97,7 +97,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="font-mono text-accent text-label uppercase tracking-widest mb-5"
+          className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5"
         >
           Content Systems Agency
         </motion.p>
@@ -270,11 +270,11 @@ export default function Hero() {
               const Icon = feature.icon
               return (
                 <div key={i} className="flex flex-col items-center text-center gap-3 px-6 py-4 md:px-10">
-                  <Icon size={22} className="text-accent" />
-                  <p className="font-display text-[1.125rem] font-medium text-text-primary">
+                  <Icon size={22} className="text-accent w-5 h-5 lg:w-6 lg:h-6" />
+                  <p className="font-display text-[1.125rem] lg:text-[1.375rem] font-medium text-text-primary">
                     {feature.title}
                   </p>
-                  <p className="font-body text-body-sm text-text-secondary leading-relaxed max-w-[260px]">
+                  <p className="font-body text-body-sm lg:text-body-md text-text-secondary leading-relaxed max-w-[260px]">
                     {feature.description}
                   </p>
                 </div>

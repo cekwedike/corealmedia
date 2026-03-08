@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, MessageSquare, FolderOpen, Eye, Trophy } from 'lucide-react'
+import { Search, MessageSquare, FolderOpen, Eye, Trophy } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const stages = [
@@ -43,13 +43,13 @@ export default function ProcessStrip() {
         {/* Header */}
         <div className="mb-12">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               How We Work
             </p>
             <h2 className="font-display text-display-lg text-text-primary mb-3">
               The Coréal Method
             </h2>
-            <p className="font-body text-body-md text-text-secondary">
+            <p className="font-body text-body-md lg:text-body-lg text-text-secondary">
               One workflow. Five stages. Everything fits inside it.
             </p>
           </ScrollReveal>
@@ -63,15 +63,15 @@ export default function ProcessStrip() {
               <ScrollReveal key={index} delay={index * 0.08} direction="up">
                 <div className="relative flex flex-col gap-4 py-8 md:px-6 md:py-0 border-b md:border-b-0 md:border-r border-border-subtle last:border-0">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[0.7rem] text-accent tracking-widest">
+                    <span className="font-mono text-[0.8125rem] md:text-[0.9375rem] text-accent tracking-widest">
                       {stage.number}
                     </span>
-                    <Icon size={18} className="text-text-muted" />
+                    <Icon size={18} className="text-text-muted md:w-5 md:h-5" />
                   </div>
-                  <h3 className="font-display text-[1.125rem] font-medium text-text-primary">
+                  <h3 className="font-display text-[1.125rem] lg:text-[1.3125rem] font-medium text-text-primary">
                     {stage.title}
                   </h3>
-                  <p className="font-body text-body-sm text-text-secondary">
+                  <p className="font-body text-body-sm lg:text-body-md text-text-secondary">
                     {stage.description}
                   </p>
                 </div>

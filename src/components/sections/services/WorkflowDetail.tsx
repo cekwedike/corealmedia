@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, MessageSquare, FolderOpen, Eye, Trophy } from 'lucide-react'
+import { Search, MessageSquare, FolderOpen, Eye, Trophy } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const STAGES = [
@@ -48,7 +48,7 @@ export default function WorkflowDetail() {
         {/* Header */}
         <div className="mb-16 max-w-2xl">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Process
             </p>
             <h2 className="font-display text-display-lg text-text-primary mb-5">
@@ -75,10 +75,10 @@ export default function WorkflowDetail() {
                 >
                   {/* Number + icon column */}
                   <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-3">
-                    <span className="font-mono text-accent font-medium" style={{ fontSize: '1.375rem' }}>
+                    <span className="font-mono text-accent font-medium text-lg lg:text-xl">
                       {stage.number}
                     </span>
-                    <Icon size={22} className="text-text-muted" />
+                    <Icon size={22} className="text-text-muted w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
 
                   {/* Content column */}

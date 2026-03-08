@@ -33,11 +33,14 @@ const config: Config = {
         'display-xl': ['clamp(2.5rem, 7vw, 6.5rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
         'display-lg': ['clamp(2rem, 5vw, 5.25rem)', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
         'display-md': ['clamp(1.5rem, 3.5vw, 3.5rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-        // Body: clamp preserves current mobile sizes, scales up on larger screens
-        'body-lg': ['clamp(1.125rem, 1.5vw, 1.375rem)', { lineHeight: '1.75' }],
-        'body-md': ['clamp(1rem, 1.25vw, 1.25rem)', { lineHeight: '1.7' }],
+        // Body: clamp preserves mobile sizes, scales up on large screens for legibility
+        'body-lg': ['clamp(1.125rem, 1.5vw, 1.5rem)', { lineHeight: '1.75' }],
+        'body-md': ['clamp(1rem, 1.25vw, 1.3125rem)', { lineHeight: '1.7' }],
         'body-sm': ['clamp(0.875rem, 1.1vw, 1.125rem)', { lineHeight: '1.65' }],
-        label: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.1em' }],
+        // Label: scale up on large screens — taglines (Done-For-You Systems, etc.)
+        label: ['clamp(0.75rem, 1.2vw, 1.125rem)', { lineHeight: '1.5', letterSpacing: '0.1em' }],
+        // Label-lg: larger for prominent red section headers (What We Do, The Real Problem, etc.)
+        'label-lg': ['clamp(0.8125rem, 1.3vw, 1.25rem)', { lineHeight: '1.5', letterSpacing: '0.1em' }],
       },
       spacing: {
         section: '8rem',

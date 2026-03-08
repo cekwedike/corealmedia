@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, MessageSquare, Layers } from 'lucide-react'
+import { Mail, MessageSquare, Layers } from '@/components/ui/Icons3D'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function ThankYouPage() {
   return (
     <main className="min-h-screen bg-bg-primary flex items-center justify-center section-padding">
       <div className="container-site max-w-2xl mx-auto text-center">
-        <p className="font-mono text-accent text-label uppercase tracking-widest mb-6">
+        <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-6">
           MESSAGE RECEIVED
         </p>
         <h1 className="font-display text-display-xl text-text-primary mb-6">

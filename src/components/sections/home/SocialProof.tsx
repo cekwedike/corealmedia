@@ -1,6 +1,6 @@
 'use client'
 
-import { Quote } from 'lucide-react'
+import { Quote } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const testimonials = [
@@ -23,7 +23,7 @@ export default function SocialProof() {
         {/* Header */}
         <div className="text-center mb-14">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               What Clients Say
             </p>
             <h2 className="font-display text-display-lg text-text-primary mb-5">
@@ -47,13 +47,12 @@ export default function SocialProof() {
                 <Quote
                   size={32}
                   className="text-[rgba(139,26,26,0.4)]"
-                  fill="rgba(139,26,26,0.15)"
                 />
                 <p className="font-display text-[1.25rem] italic text-text-primary leading-[1.6] flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="pt-4 border-t border-border-subtle">
-                  <p className="font-mono text-label text-text-muted uppercase tracking-widest">
+                  <p className="font-mono text-label-lg text-text-muted uppercase tracking-widest">
                     {t.author}
                   </p>
                 </div>

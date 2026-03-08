@@ -10,7 +10,7 @@ export default function ContactHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="font-mono text-accent text-label uppercase tracking-widest mb-5"
+          className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5"
         >
           Get In Touch
         </motion.p>

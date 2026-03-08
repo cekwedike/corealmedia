@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, FileText, Calendar, Mic2, Repeat2, Hash, BookOpen } from 'lucide-react'
+import { ArrowRight, FileText, Calendar, Mic2, Repeat2, Hash, BookOpen } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const products = [
@@ -71,7 +71,7 @@ export default function ProductGrid() {
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="group relative flex flex-col gap-5 p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
                   {product.badge && (
-                    <span className="absolute top-5 right-5 font-mono text-[0.65rem] uppercase tracking-widest text-accent border border-[rgba(139,26,26,0.35)] px-2 py-0.5 rounded-sm">
+                    <span className="absolute top-5 right-5 font-mono text-label-lg uppercase tracking-widest text-accent border border-[rgba(139,26,26,0.35)] px-2 py-0.5 rounded-sm">
                       {product.badge}
                     </span>
                   )}
@@ -79,13 +79,13 @@ export default function ProductGrid() {
                   <Icon size={28} className="text-accent" />
 
                   <div className="flex-1">
-                    <p className="font-mono text-label text-text-muted uppercase tracking-widest mb-1.5">
+                    <p className="font-mono text-label-lg text-text-muted uppercase tracking-widest mb-1.5">
                       {product.tagline}
                     </p>
                     <h3 className="font-display text-[1.375rem] font-medium text-text-primary mb-3">
                       {product.name}
                     </h3>
-                    <p className="font-body text-body-sm text-text-secondary leading-relaxed">
+                    <p className="font-body text-body-sm lg:text-body-md text-text-secondary leading-relaxed">
                       {product.description}
                     </p>
                   </div>

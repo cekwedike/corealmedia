@@ -1,6 +1,6 @@
 'use client'
 
-import { XCircle } from 'lucide-react'
+import { XCircle } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const problems = [
@@ -18,7 +18,7 @@ export default function ProblemSection() {
           {/* Left Column */}
           <div>
             <ScrollReveal>
-              <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+              <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
                 The Real Problem
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-6">
@@ -28,17 +28,17 @@ export default function ProblemSection() {
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <p className="font-body text-body-md text-text-secondary mb-4">
+              <p className="font-body text-body-md lg:text-body-lg text-text-secondary mb-4">
                 Posting isn&apos;t a strategy. Posting consistently with a clear message, to the
                 right audience, in the right format, across the right platforms — that&apos;s a
                 system.
               </p>
-              <p className="font-body text-body-md text-text-secondary">
+              <p className="font-body text-body-md lg:text-body-lg text-text-secondary">
                 Most brands struggle not because they don&apos;t know content matters. They struggle
                 because nobody built the engine. No workflow. No consistency. No clear direction.
                 Just panic posting when it feels like too long has passed.
               </p>
-              <p className="font-body text-body-md text-text-secondary mt-4 font-medium text-text-primary">
+              <p className="font-body text-body-md lg:text-body-lg text-text-secondary mt-4 font-medium text-text-primary">
                 That&apos;s exactly what Coréal was built to fix.
               </p>
             </ScrollReveal>
@@ -50,7 +50,7 @@ export default function ProblemSection() {
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="flex items-start gap-4 p-5 border border-border rounded-sm bg-bg-card">
                   <XCircle size={20} className="text-accent shrink-0 mt-0.5" />
-                  <p className="font-body text-body-md text-text-secondary">{problem}</p>
+                  <p className="font-body text-body-md lg:text-body-lg text-text-secondary">{problem}</p>
                 </div>
               </ScrollReveal>
             ))}

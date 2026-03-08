@@ -15,7 +15,7 @@ export default function TeamGrid({ members }: TeamGridProps) {
         {/* Header */}
         <div className="mb-12">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Team
             </p>
             <h2 className="font-display text-display-lg text-text-primary mb-4">
@@ -48,7 +48,7 @@ export default function TeamGrid({ members }: TeamGridProps) {
                 <h3 className="font-display text-[1.25rem] text-text-primary leading-snug mb-1">
                   {member.name}
                 </h3>
-                <p className="font-mono text-accent text-label uppercase tracking-widest mb-3">
+                <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-3">
                   {member.role}
                 </p>
 

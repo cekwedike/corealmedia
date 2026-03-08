@@ -1,6 +1,6 @@
 'use client'
 
-import { User, Briefcase, Users, Target } from 'lucide-react'
+import { User, Briefcase, Users, Target } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 
 const clients = [
@@ -37,7 +37,7 @@ export default function WhoWeServe() {
         {/* Header */}
         <div className="text-center mb-14">
           <ScrollReveal>
-            <p className="font-mono text-accent text-label uppercase tracking-widest mb-4">
+            <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               Who We Serve
             </p>
             <h2 className="font-display text-display-lg text-text-primary mb-5">

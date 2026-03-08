@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Instagram, Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { Instagram, Linkedin, Mail, ArrowRight } from '@/components/ui/Icons3D'
 import { footerQuickLinks } from '@/data/navigation'
 
 export default function Footer() {
@@ -15,7 +15,7 @@ export default function Footer() {
             >
               Coréal
             </Link>
-            <p className="font-body text-body-sm text-text-muted max-w-[220px]">
+            <p className="font-body text-body-sm lg:text-body-md text-text-muted max-w-[220px]">
               Content engineered by intelligence. Felt by humans.
             </p>
             <div className="flex items-center gap-4 mt-2">
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <p className="font-body text-[0.75rem] font-medium text-text-secondary uppercase tracking-[0.08em] mb-5">
+            <p className="font-body text-label-lg font-medium text-text-secondary uppercase tracking-[0.08em] mb-5">
               Quick Links
             </p>
             <ul className="flex flex-col gap-3">
@@ -50,7 +50,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-body text-body-sm text-text-muted hover:text-text-secondary transition-colors duration-200"
+                    className="font-body text-body-sm lg:text-body-md text-text-muted hover:text-text-secondary transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -61,19 +61,19 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div>
-            <p className="font-body text-[0.75rem] font-medium text-text-secondary uppercase tracking-[0.08em] mb-5">
+            <p className="font-body text-label-lg font-medium text-text-secondary uppercase tracking-[0.08em] mb-5">
               Get In Touch
             </p>
             <a
               href="mailto:hello@corealmedia.com"
-              className="flex items-center gap-2 font-body text-body-sm text-text-muted hover:text-text-secondary transition-colors duration-200 mb-6"
+              className="flex items-center gap-2 font-body text-body-sm lg:text-body-md text-text-muted hover:text-text-secondary transition-colors duration-200 mb-6"
             >
               <Mail size={16} />
               hello@corealmedia.com
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-5 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-accent text-white font-body text-body-sm lg:text-body-md font-medium px-5 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
               <ArrowRight size={14} />
@@ -83,7 +83,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-border-subtle">
-          <p className="font-body text-body-sm text-text-muted">
+          <p className="font-body text-body-sm lg:text-body-md text-text-muted">
             &copy; 2026 Coréal Media. All rights reserved.
           </p>
         </div>

@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <main className="min-h-screen bg-bg-primary flex items-center justify-center section-padding">
       <div className="container-site max-w-xl mx-auto text-center">
-        <p className="font-mono text-accent text-label uppercase tracking-widest mb-6">404</p>
+        <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-6">404</p>
         <h1 className="font-display text-display-xl text-text-primary mb-6">
           This Page Doesn&apos;t Exist.
           <br />

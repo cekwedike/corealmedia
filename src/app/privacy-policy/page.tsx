@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="bg-bg-primary section-padding pt-36">
       <div className="container-site max-w-3xl mx-auto">
-        <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-4">
+        <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
           Legal
         </p>
         <h1 className="font-display text-display-lg text-text-primary mb-3">Privacy Policy</h1>

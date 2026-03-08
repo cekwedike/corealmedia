@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Check, ArrowRight } from 'lucide-react'
+import { Check, ArrowRight } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 import { Service } from '@/types/service'
 
@@ -45,13 +45,13 @@ export default function ServiceBlock({
           {/* Left / Description column */}
           <div className={reversed ? '[direction:ltr]' : ''}>
             <ScrollReveal>
-              <p className="font-mono text-accent text-label uppercase tracking-widest mb-3">
+              <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-3">
                 Service {serviceNumber}
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-2">
                 {service.name}
               </h2>
-              <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-8">
+              <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-8">
                 {service.tagline}
               </p>
             </ScrollReveal>
@@ -93,7 +93,7 @@ export default function ServiceBlock({
           <div className={reversed ? '[direction:ltr]' : ''}>
             {/* What You Get */}
             <ScrollReveal>
-              <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-6">
+              <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-6">
                 What You Get
               </p>
             </ScrollReveal>
@@ -120,7 +120,7 @@ export default function ServiceBlock({
                   borderLeft: '3px solid #8B1A1A',
                 }}
               >
-                <p className="font-mono text-accent text-label uppercase tracking-widest mb-2">
+                <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-2">
                   The Outcome
                 </p>
                 <p className="font-body text-body-md text-text-primary leading-relaxed">

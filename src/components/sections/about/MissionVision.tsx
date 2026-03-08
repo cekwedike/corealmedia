@@ -7,7 +7,7 @@ export default function MissionVision() {
     <section className="bg-bg-primary section-padding border-t border-border-subtle">
       <div className="container-site">
         <ScrollReveal>
-          <p className="font-mono text-accent text-label uppercase tracking-widest mb-10">
+          <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-10">
             Where We&apos;re Going
           </p>
         </ScrollReveal>
@@ -16,7 +16,7 @@ export default function MissionVision() {
           {/* Mission */}
           <ScrollReveal>
             <div className="md:pr-12 pb-12 md:pb-0">
-              <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-4">
+              <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
                 Our Mission
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-6">Our Mission</h2>
@@ -36,7 +36,7 @@ export default function MissionVision() {
           {/* Vision */}
           <ScrollReveal>
             <div className="md:pl-12 pt-12 md:pt-0 border-t md:border-t-0 border-border-subtle">
-              <p className="font-mono text-text-muted text-label uppercase tracking-widest mb-4">
+              <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
                 Our Vision
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-6">Our Vision</h2>

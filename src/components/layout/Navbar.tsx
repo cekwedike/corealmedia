@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Instagram, Linkedin, Sun, Moon } from 'lucide-react'
+import { Menu, X, Instagram, Linkedin, Sun, Moon } from '@/components/ui/Icons3D'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
@@ -50,7 +50,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display text-[1.375rem] font-medium text-text-primary hover:opacity-80 transition-opacity"
+            className="font-display text-[1.375rem] lg:text-[1.5rem] font-medium text-text-primary hover:opacity-80 transition-opacity"
           >
             Coréal
           </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'font-body text-[0.875rem] transition-colors duration-200',
+                  'font-body text-sm lg:text-base transition-colors duration-200',
                   pathname === link.href
                     ? 'text-text-primary'
                     : 'text-text-secondary hover:text-text-primary'
@@ -84,7 +84,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="bg-accent text-white font-body text-body-sm font-medium px-6 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
+              className="bg-accent text-white font-body text-body-sm lg:text-body-md font-medium px-6 py-2.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
             >
               Work With Us
             </Link>
