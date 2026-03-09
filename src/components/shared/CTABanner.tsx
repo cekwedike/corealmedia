@@ -29,7 +29,7 @@ export default function CTABanner({
           <p className="font-body text-body-lg text-text-secondary mb-8">{body}</p>
           <Link
             href={ctaHref}
-            className="inline-flex items-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-7 py-3 rounded-md hover:bg-accent-hover transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-6 sm:px-7 py-3 rounded-md hover:bg-accent-hover transition-colors duration-200 min-h-[44px] w-full sm:w-auto"
           >
             {ctaLabel}
             <ArrowRight size={16} />

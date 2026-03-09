@@ -24,7 +24,7 @@ export default function BrandStory() {
       </div>
 
       <div className="container-site relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20">
           {/* Left: label + headline + callout */}
           <div>
             <ScrollReveal>
@@ -40,14 +40,14 @@ export default function BrandStory() {
             <ScrollReveal delay={0.2}>
               <div className="bg-bg-card border border-border-subtle rounded-sm overflow-hidden">
                 <div className="grid grid-cols-2 divide-x divide-border-subtle">
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-2">Co</p>
                     <p className="font-display text-[1.5rem] text-text-primary mb-2">Collaboration</p>
                     <p className="font-body text-body-sm text-text-secondary">
                       Co-creation, collective intelligence, the power of working together.
                     </p>
                   </div>
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-2">Real</p>
                     <p className="font-display text-[1.5rem] text-text-primary mb-2">Authenticity</p>
                     <p className="font-body text-body-sm text-text-secondary">

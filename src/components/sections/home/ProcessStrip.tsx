@@ -41,7 +41,7 @@ export default function ProcessStrip() {
     <section className="bg-bg-secondary section-padding">
       <div className="container-site">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-10 lg:mb-12">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               How We Work
@@ -55,13 +55,13 @@ export default function ProcessStrip() {
           </ScrollReveal>
         </div>
 
-        {/* Stages — horizontal on desktop, vertical on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
+        {/* Stages — horizontal on lg+, 2-col on tablet, stacked on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0">
           {stages.map((stage, index) => {
             const Icon = stage.icon
             return (
               <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                <div className="relative flex flex-col gap-4 py-8 md:px-6 md:py-0 border-b md:border-b-0 md:border-r border-border-subtle last:border-0">
+                <div className="relative flex flex-col gap-4 py-6 sm:py-8 md:px-6 md:py-8 lg:py-0 border-b border-border-subtle md:odd:border-r last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0">
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-[0.8125rem] md:text-[0.9375rem] text-accent tracking-widest">
                       {stage.number}

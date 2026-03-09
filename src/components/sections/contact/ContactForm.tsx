@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { Mail, Instagram, Linkedin, Loader2 } from '@/components/ui/Icons3D'
+import { Mail, Instagram, Linkedin, Facebook, Loader2 } from '@/components/ui/Icons3D'
 
 interface FormValues {
   fullName: string
@@ -24,7 +24,7 @@ const SERVICE_OPTIONS = [
 ]
 
 const inputClass =
-  'w-full bg-bg-primary border border-border-subtle rounded-md px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors duration-200'
+  'w-full min-h-[44px] bg-bg-primary border border-border-subtle rounded-md px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors duration-200'
 const labelClass = 'block font-body text-body-sm text-text-secondary mb-2'
 const errorClass = 'font-body text-body-sm mt-1.5' + ' ' + 'text-[#CF4444]'
 
@@ -70,7 +70,7 @@ export default function ContactForm() {
   return (
     <section className="bg-bg-secondary section-padding border-t border-border-subtle">
       <div className="container-site">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-8 sm:gap-12 xl:gap-20">
           {/* Form */}
           <div>
             <h2 className="font-display text-display-md text-text-primary mb-8">
@@ -205,7 +205,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px]"
               >
                 {isSubmitting ? (
                   <>
@@ -264,6 +264,21 @@ export default function ContactForm() {
                   <p className="font-body text-body-sm text-text-muted mb-0.5">LinkedIn</p>
                   <a
                     href="https://linkedin.com/company/corealmedia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-body-md text-text-primary hover:text-accent transition-colors"
+                  >
+                    Coréal Media
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Facebook size={18} className="text-accent mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-body text-body-sm text-text-muted mb-0.5">Facebook</p>
+                  <a
+                    href="https://www.facebook.com/share/1DnHTtPTL4/?mibextid=wwXIfr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-body text-body-md text-text-primary hover:text-accent transition-colors"

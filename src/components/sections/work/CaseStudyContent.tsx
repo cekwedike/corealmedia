@@ -18,7 +18,7 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-bg-primary pt-20 min-h-[55vh] flex items-end pb-16 overflow-hidden">
+      <section className="relative bg-bg-primary pt-24 sm:pt-28 min-h-[50vh] sm:min-h-[55vh] flex items-end pb-12 sm:pb-16 overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image

@@ -35,7 +35,7 @@ export default function WhoWeServe() {
     <section className="bg-bg-primary section-padding">
       <div className="container-site">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               Who We Serve
@@ -50,12 +50,12 @@ export default function WhoWeServe() {
         </div>
 
         {/* Client Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {clients.map((client, index) => {
             const Icon = client.icon
             return (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="flex flex-col gap-4 py-6 pl-7 pr-6 border-l-2 border-accent bg-bg-card">
+                <div className="flex flex-col gap-4 py-5 sm:py-6 pl-5 sm:pl-7 pr-4 sm:pr-6 border-l-2 border-accent bg-bg-card">
                   <Icon size={24} className="text-accent" />
                   <h3 className="font-display text-display-md text-text-primary">
                     {client.title}

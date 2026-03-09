@@ -15,7 +15,7 @@ export default function MissionVision() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:divide-x divide-border-subtle">
           {/* Mission */}
           <ScrollReveal>
-            <div className="md:pr-12 pb-12 md:pb-0">
+            <div className="md:pr-12 pb-10 sm:pb-12 md:pb-0">
               <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
                 Our Mission
               </p>
@@ -35,7 +35,7 @@ export default function MissionVision() {
 
           {/* Vision */}
           <ScrollReveal>
-            <div className="md:pl-12 pt-12 md:pt-0 border-t md:border-t-0 border-border-subtle">
+            <div className="md:pl-12 pt-10 sm:pt-12 md:pt-0 border-t md:border-t-0 border-border-subtle">
               <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
                 Our Vision
               </p>

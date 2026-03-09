@@ -64,12 +64,12 @@ export default function ProductGrid() {
   return (
     <section className="bg-bg-primary section-padding">
       <div className="container-site">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {products.map((product, index) => {
             const Icon = product.icon
             return (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="group relative flex flex-col gap-5 p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
+                <div className="group relative flex flex-col gap-5 p-6 sm:p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
                   {product.badge && (
                     <span className="absolute top-5 right-5 font-mono text-label-lg uppercase tracking-widest text-accent border border-[rgba(139,26,26,0.35)] px-2 py-0.5 rounded-sm">
                       {product.badge}

@@ -33,7 +33,7 @@ export default function ServicesTeaser() {
     <section className="bg-bg-primary section-padding">
       <div className="container-site">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               What We Do
@@ -49,12 +49,12 @@ export default function ServicesTeaser() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
             return (
               <ScrollReveal key={index} delay={index * 0.15}>
-                <div className="group flex flex-col gap-5 p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
+                <div className="group flex flex-col gap-4 sm:gap-5 p-6 sm:p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
                   <Icon size={32} className="text-accent" />
                   <div>
                     <p className="font-mono text-label-lg text-text-muted uppercase tracking-widest mb-2">

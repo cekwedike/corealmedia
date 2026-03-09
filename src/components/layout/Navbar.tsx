@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Instagram, Linkedin, Sun, Moon } from '@/components/ui/Icons3D'
+import { Menu, X, Instagram, Linkedin, Facebook, Sun, Moon } from '@/components/ui/Icons3D'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
@@ -46,7 +46,7 @@ export default function Navbar() {
         )}
         style={scrolled ? { backgroundColor: 'rgba(var(--bg-primary-rgb), 0.9)' } : undefined}
       >
-        <div className="container-site flex items-center justify-between h-[72px]">
+        <div className="container-site flex items-center justify-between h-14 sm:h-16 lg:h-[72px]">
           {/* Logo */}
           <Link
             href="/"
@@ -56,7 +56,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-10">
             {mainNavLinks.map(link => (
               <Link
                 key={link.href}
@@ -121,7 +121,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[100] bg-bg-primary flex flex-col"
           >
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between px-6 h-16">
+            <div className="flex items-center justify-between px-4 sm:px-6 h-16 pt-[env(safe-area-inset-top)] min-h-[4rem]">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
@@ -197,6 +197,15 @@ export default function Navbar() {
                 aria-label="Coréal Media on LinkedIn"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1DnHTtPTL4/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-muted hover:text-text-primary transition-colors"
+                aria-label="Coréal Media on Facebook"
+              >
+                <Facebook size={20} />
               </a>
             </div>
           </motion.div>

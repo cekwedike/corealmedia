@@ -38,7 +38,7 @@ export default function ServiceBlock({
 
       <div className="container-site relative z-10">
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 ${
+          className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 ${
             reversed ? 'md:[direction:rtl]' : ''
           }`}
         >
@@ -114,7 +114,7 @@ export default function ServiceBlock({
             {/* Outcome callout */}
             <ScrollReveal delay={0.35}>
               <div
-                className="rounded-sm px-6 py-5"
+                className="rounded-sm px-4 py-4 sm:px-6 sm:py-5"
                 style={{
                   background: 'rgba(139,26,26,0.08)',
                   borderLeft: '3px solid #8B1A1A',

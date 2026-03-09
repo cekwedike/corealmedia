@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-bg-primary section-padding pt-36">
+    <main className="bg-bg-primary section-padding pt-28 sm:pt-32 lg:pt-36">
       <div className="container-site max-w-3xl mx-auto">
         <p className="font-mono text-text-muted text-label-lg uppercase tracking-widest mb-4">
           Legal

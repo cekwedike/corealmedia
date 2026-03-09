@@ -1,46 +1,47 @@
 'use client'
 
 /**
- * 3D-style icons via Iconsax (Bulk variant) for consistent look across the site.
- * Replaces Lucide with a single variant for all icon usage.
+ * Icons via Phosphor — clean, minimal line icons (regular weight).
  */
 import {
-  Menu as MenuSax,
-  CloseCircle,
-  ArrowRight as ArrowRightSax,
-  ArrowLeft as ArrowLeftSax,
-  Instagram as InstagramSax,
-  LinkCircle,
-  Direct,
-  Refresh2,
-  Layer,
-  Setting2,
+  List as ListPhosphor,
+  XCircle as XCirclePhosphor,
+  ArrowRight as ArrowRightPhosphor,
+  ArrowLeft as ArrowLeftPhosphor,
+  InstagramLogo,
+  LinkedinLogo,
+  FacebookLogo,
+  Sun as SunPhosphor,
+  Moon as MoonPhosphor,
+  User as UserPhosphor,
+  Briefcase as BriefcasePhosphor,
+  Users as UsersPhosphor,
+  Target as TargetPhosphor,
+  MagnifyingGlass,
+  ChatCircle,
+  FolderOpen as FolderOpenPhosphor,
+  Eye as EyePhosphor,
+  Trophy as TrophyPhosphor,
+  CheckCircle,
+  Cpu as CpuPhosphor,
+  Heart as HeartPhosphor,
+  Lightning,
+  Stack,
+  Gear,
   TrendUp,
-  QuoteDownCircle,
-  User as UserSax,
-  Briefcase as BriefcaseSax,
-  People,
-  Award,
-  SearchNormal,
-  MessageSquare as MessageSquareSax,
-  FolderOpen as FolderOpenSax,
-  Eye as EyeSax,
-  Medal,
-  TickCircle,
-  Cpu as CpuSax,
-  Heart as HeartSax,
-  Flash,
-  DocumentText,
-  Calendar1,
-  Microphone2,
-  Hashtag,
-  Book1,
-  Sun1,
-  Moon as MoonSax,
-} from 'iconsax-react'
+  Quotes,
+  FileText as FileTextPhosphor,
+  Calendar as CalendarPhosphor,
+  Microphone,
+  ArrowsClockwise,
+  Hash as HashPhosphor,
+  BookOpen as BookOpenPhosphor,
+  Envelope,
+  CircleNotch,
+} from '@phosphor-icons/react'
 
-const BULK = 'Bulk' as const
 const defaultSize = 24
+const weight = 'regular' as const
 
 interface IconProps {
   size?: number
@@ -50,43 +51,52 @@ interface IconProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function withBulk(Icon: React.ComponentType<any>) {
-  return function Icon3D({ size = defaultSize, className, style, color }: IconProps) {
-    return <Icon size={size} className={className} style={style} color={color} variant={BULK} />
+function wrap(Icon: any) {
+  return function WrappedIcon({ size = defaultSize, className, style, color }: IconProps) {
+    return (
+      <Icon
+        size={size}
+        className={className}
+        style={style}
+        color={color}
+        weight={weight}
+      />
+    )
   }
 }
 
-export const Menu = withBulk(MenuSax)
-export const X = withBulk(CloseCircle)
-export const ArrowRight = withBulk(ArrowRightSax)
-export const ArrowLeft = withBulk(ArrowLeftSax)
-export const Instagram = withBulk(InstagramSax)
-export const Linkedin = withBulk(LinkCircle)
-export const Mail = withBulk(Direct)
-export const Loader2 = withBulk(Refresh2)
-export const Layers = withBulk(Layer)
-export const Settings2 = withBulk(Setting2)
-export const TrendingUp = withBulk(TrendUp)
-export const Quote = withBulk(QuoteDownCircle)
-export const User = withBulk(UserSax)
-export const Briefcase = withBulk(BriefcaseSax)
-export const Users = withBulk(People)
-export const Target = withBulk(Award)
-export const XCircle = withBulk(CloseCircle)
-export const Search = withBulk(SearchNormal)
-export const MessageSquare = withBulk(MessageSquareSax)
-export const FolderOpen = withBulk(FolderOpenSax)
-export const Eye = withBulk(EyeSax)
-export const Trophy = withBulk(Medal)
-export const Check = withBulk(TickCircle)
-export const Cpu = withBulk(CpuSax)
-export const Heart = withBulk(HeartSax)
-export const Zap = withBulk(Flash)
-export const FileText = withBulk(DocumentText)
-export const Calendar = withBulk(Calendar1)
-export const Mic2 = withBulk(Microphone2)
-export const Repeat2 = withBulk(Refresh2)
-export const Hash = withBulk(Hashtag)
-export const BookOpen = withBulk(Book1)
-export const Sun = withBulk(Sun1)
-export const Moon = withBulk(MoonSax)
+export const Menu = wrap(ListPhosphor)
+export const X = wrap(XCirclePhosphor)
+export const ArrowRight = wrap(ArrowRightPhosphor)
+export const ArrowLeft = wrap(ArrowLeftPhosphor)
+export const Instagram = wrap(InstagramLogo)
+export const Linkedin = wrap(LinkedinLogo)
+export const Facebook = wrap(FacebookLogo)
+export const Mail = wrap(Envelope)
+export const Loader2 = wrap(CircleNotch)
+export const Layers = wrap(Stack)
+export const Settings2 = wrap(Gear)
+export const TrendingUp = wrap(TrendUp)
+export const Quote = wrap(Quotes)
+export const User = wrap(UserPhosphor)
+export const Briefcase = wrap(BriefcasePhosphor)
+export const Users = wrap(UsersPhosphor)
+export const Target = wrap(TargetPhosphor)
+export const XCircle = wrap(XCirclePhosphor)
+export const Search = wrap(MagnifyingGlass)
+export const MessageSquare = wrap(ChatCircle)
+export const FolderOpen = wrap(FolderOpenPhosphor)
+export const Eye = wrap(EyePhosphor)
+export const Trophy = wrap(TrophyPhosphor)
+export const Check = wrap(CheckCircle)
+export const Cpu = wrap(CpuPhosphor)
+export const Heart = wrap(HeartPhosphor)
+export const Zap = wrap(Lightning)
+export const FileText = wrap(FileTextPhosphor)
+export const Calendar = wrap(CalendarPhosphor)
+export const Mic2 = wrap(Microphone)
+export const Repeat2 = wrap(ArrowsClockwise)
+export const Hash = wrap(HashPhosphor)
+export const BookOpen = wrap(BookOpenPhosphor)
+export const Sun = wrap(SunPhosphor)
+export const Moon = wrap(MoonPhosphor)

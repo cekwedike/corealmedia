@@ -36,7 +36,7 @@ export default function Philosophy() {
     <section className="bg-bg-primary section-padding border-t border-border-subtle">
       <div className="container-site">
         {/* Header — centered */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5">
               Our Philosophy
@@ -63,7 +63,7 @@ export default function Philosophy() {
             const Icon = pillar.icon
             return (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="bg-bg-card border border-border rounded-sm p-8 transition-colors duration-300 hover:border-accent">
+                <div className="bg-bg-card border border-border rounded-sm p-6 sm:p-8 transition-colors duration-300 hover:border-accent">
                   <Icon size={32} className="text-accent mb-5" />
                   <h3 className="font-display text-display-md text-text-primary mb-3">
                     {pillar.title}

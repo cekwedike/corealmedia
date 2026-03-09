@@ -30,7 +30,7 @@ const STEPS = [
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-screen bg-bg-primary flex items-center justify-center section-padding">
+    <main className="min-h-screen bg-bg-primary flex items-center justify-center section-padding py-12 sm:py-16">
       <div className="container-site max-w-2xl mx-auto text-center">
         <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-6">
           MESSAGE RECEIVED

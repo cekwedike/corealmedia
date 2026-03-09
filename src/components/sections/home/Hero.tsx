@@ -7,14 +7,14 @@ import Image from 'next/image'
 import { Layers, Settings2, TrendingUp } from '@/components/ui/Icons3D'
 
 const IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', alt: 'Creative professional' },
-  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80', alt: 'Brand strategist' },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', alt: 'Content creator' },
-  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', alt: 'Creative director' },
-  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80', alt: 'Social media lead' },
-  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80', alt: 'Growth strategist' },
-  { src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80', alt: 'Marketing director' },
-  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80', alt: 'Operations lead' },
+  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=75', alt: 'Creative professional' },
+  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=75', alt: 'Brand strategist' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=75', alt: 'Content creator' },
+  { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75', alt: 'Creative director' },
+  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=75', alt: 'Social media lead' },
+  { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=75', alt: 'Growth strategist' },
+  { src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=75', alt: 'Marketing director' },
+  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=75', alt: 'Operations lead' },
 ]
 
 const SIN_72 = Math.sin((72 * Math.PI) / 180)
@@ -81,7 +81,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative bg-bg-primary flex flex-col items-center pt-28 pb-0">
+    <section className="relative bg-bg-primary flex flex-col items-center pt-24 sm:pt-28 pb-0">
       {/* Radial accent glow */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -92,7 +92,7 @@ export default function Hero() {
       />
 
       {/* Text content */}
-      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-1">
+      <div className="container-site w-full flex flex-col items-center text-center relative z-10 mb-1 px-1 sm:px-0">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -106,7 +106,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-          className="font-display text-display-2xl text-text-primary max-w-4xl mx-auto text-balance"
+          className="font-display text-display-2xl text-text-primary max-w-4xl mx-auto text-balance px-1 sm:px-0"
         >
           Your Brand Deserves to Be Everywhere.{' '}
           <span className="italic text-text-secondary">Consistently.</span>
@@ -126,17 +126,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center gap-4 mt-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto"
         >
           <Link
             href="/contact"
-            className="bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
+            className="w-full sm:w-auto text-center bg-accent text-white font-body text-body-sm font-medium px-6 sm:px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 min-h-[44px] flex items-center justify-center"
           >
             Work With Us
           </Link>
           <Link
             href="/work"
-            className="border border-border text-text-primary font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:border-accent transition-colors duration-200"
+            className="w-full sm:w-auto text-center border border-border text-text-primary font-body text-body-sm font-medium px-6 sm:px-8 py-3.5 rounded-md hover:border-accent transition-colors duration-200 min-h-[44px] flex items-center justify-center"
           >
             See Our Work
           </Link>
@@ -269,7 +269,7 @@ export default function Hero() {
             {FEATURES.map((feature, i) => {
               const Icon = feature.icon
               return (
-                <div key={i} className="flex flex-col items-center text-center gap-3 px-6 py-4 md:px-10">
+                <div key={i} className="flex flex-col items-center text-center gap-3 px-4 py-6 sm:px-6 sm:py-4 md:px-10">
                   <Icon size={22} className="text-accent w-5 h-5 lg:w-6 lg:h-6" />
                   <p className="font-display text-[1.125rem] lg:text-[1.375rem] font-medium text-text-primary">
                     {feature.title}

@@ -31,7 +31,7 @@ export default function CaseStudyCard({ study }: CaseStudyCardProps) {
       </div>
 
       {/* Card body */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {study.servicesUsed.map(tag => (

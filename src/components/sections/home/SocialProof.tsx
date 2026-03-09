@@ -21,7 +21,7 @@ export default function SocialProof() {
     <section className="bg-bg-secondary section-padding">
       <div className="container-site">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               What Clients Say
@@ -36,14 +36,14 @@ export default function SocialProof() {
         </div>
 
         {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {testimonials.map((t, index) => (
             <ScrollReveal
               key={index}
               delay={index * 0.15}
               direction={index === 0 ? 'left' : 'right'}
             >
-              <div className="flex flex-col gap-6 p-10 bg-bg-card border border-border rounded-sm h-full">
+              <div className="flex flex-col gap-6 p-6 sm:p-8 md:p-10 bg-bg-card border border-border rounded-sm h-full">
                 <Quote
                   size={32}
                   className="text-[rgba(139,26,26,0.4)]"

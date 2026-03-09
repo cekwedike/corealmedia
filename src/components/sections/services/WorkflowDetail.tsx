@@ -46,7 +46,7 @@ export default function WorkflowDetail() {
     <section className="bg-bg-primary section-padding border-t border-border-subtle">
       <div className="container-site">
         {/* Header */}
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-10 sm:mb-14 lg:mb-16 max-w-2xl">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
               The Process
@@ -69,7 +69,7 @@ export default function WorkflowDetail() {
             return (
               <ScrollReveal key={stage.number} delay={i * 0.12}>
                 <div
-                  className={`grid grid-cols-1 md:grid-cols-[80px_1fr] gap-6 md:gap-10 py-10 ${
+                  className={`grid grid-cols-1 md:grid-cols-[80px_1fr] gap-4 md:gap-10 py-8 sm:py-10 ${
                     !isLast ? 'border-b border-border-subtle' : ''
                   }`}
                 >

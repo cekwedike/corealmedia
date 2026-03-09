@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { Instagram, Linkedin, Mail, ArrowRight } from '@/components/ui/Icons3D'
+import { Instagram, Linkedin, Facebook, Mail, ArrowRight } from '@/components/ui/Icons3D'
 import { footerQuickLinks } from '@/data/navigation'
 
 export default function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-border-subtle">
       <div className="container-site section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-8 lg:gap-12">
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-4">
             <Link
@@ -15,7 +15,7 @@ export default function Footer() {
             >
               Coréal
             </Link>
-            <p className="font-body text-body-sm lg:text-body-md text-text-muted max-w-[220px]">
+            <p className="font-body text-body-sm lg:text-body-md text-text-muted max-w-[220px] sm:max-w-none">
               Content engineered by intelligence. Felt by humans.
             </p>
             <div className="flex items-center gap-4 mt-2">
@@ -36,6 +36,15 @@ export default function Footer() {
                 aria-label="Coréal Media on LinkedIn"
               >
                 <Linkedin size={18} />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1DnHTtPTL4/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-muted hover:text-accent transition-colors duration-200"
+                aria-label="Coréal Media on Facebook"
+              >
+                <Facebook size={18} />
               </a>
             </div>
           </div>
@@ -66,7 +75,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:hello@corealmedia.com"
-              className="flex items-center gap-2 font-body text-body-sm lg:text-body-md text-text-muted hover:text-text-secondary transition-colors duration-200 mb-6"
+              className="flex items-center gap-2 font-body text-body-sm lg:text-body-md text-text-muted hover:text-text-secondary transition-colors duration-200 mb-6 break-all sm:break-normal"
             >
               <Mail size={16} />
               hello@corealmedia.com

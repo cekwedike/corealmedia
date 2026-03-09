@@ -14,7 +14,7 @@ export default function ProblemSection() {
   return (
     <section className="bg-bg-secondary section-padding">
       <div className="container-site">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-24 items-start">
           {/* Left Column */}
           <div>
             <ScrollReveal>
@@ -48,7 +48,7 @@ export default function ProblemSection() {
           <div className="flex flex-col gap-5 mt-2">
             {problems.map((problem, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="flex items-start gap-4 p-5 border border-border rounded-sm bg-bg-card">
+                <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 border border-border rounded-sm bg-bg-card">
                   <XCircle size={20} className="text-accent shrink-0 mt-0.5" />
                   <p className="font-body text-body-md lg:text-body-lg text-text-secondary">{problem}</p>
                 </div>

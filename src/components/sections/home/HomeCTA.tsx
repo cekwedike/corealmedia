@@ -18,7 +18,7 @@ export default function HomeCTA() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 bg-accent text-white font-body text-body-sm font-medium px-6 sm:px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 min-h-[44px] w-full sm:w-auto"
           >
             Start the Conversation
             <ArrowRight size={16} />

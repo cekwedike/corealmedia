@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function ServicesHero() {
   return (
-    <section className="bg-bg-primary section-padding pt-36 pb-20 border-b border-border-subtle">
+    <section className="bg-bg-primary section-padding pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 border-b border-border-subtle">
       <div className="container-site max-w-4xl">
         <motion.p
           initial={{ opacity: 0 }}
