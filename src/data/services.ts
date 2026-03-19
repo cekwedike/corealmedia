@@ -5,7 +5,7 @@ export const services: Service[] = [
     id: 'content-os',
     name: 'The Content OS',
     tagline: 'Done-For-You Content Systems',
-    description: `Most brands treat content like a task. Something to check off. Something to outsource and forget. The Content OS changes that entirely.\n\nWe design and engineer your full content infrastructure. That means you get a clear content strategy, a repeatable production workflow, defined themes and messaging pillars, and a system that produces high-quality content on a predictable schedule.\n\nContent stops being a daily decision. It becomes a predictable asset that grows your brand whether you're in the room or not.`,
+    description: `We design and engineer your full content infrastructure: strategy, production workflow, messaging pillars, and a system that runs on schedule.\n\nContent stops being a daily decision. It becomes a predictable asset that grows your brand whether you're in the room or not.`,
     deliverables: [
       'A full content strategy built around your brand voice and audience',
       'Defined content pillars and messaging themes',
@@ -24,7 +24,7 @@ export const services: Service[] = [
     id: 'operational-engine',
     name: 'The Operational Engine',
     tagline: 'Marketing Execution & Management',
-    description: `Building a system is one thing. Running it consistently is another. The Operational Engine is for brands who have clarity on their content direction and now need a team to execute it, day after day, without gaps.\n\nWe only offer execution once the content system is built. This is intentional. Execution without a system creates noise. Execution with a system creates momentum.\n\nThis is where your brand stops being active and starts being omnipresent.`,
+    description: `Execution without a system creates noise. Execution with a system creates momentum.\n\nThe Operational Engine is for brands ready to hand off day-to-day content execution: posting, scheduling, analytics, and delivery, without founder involvement in every step.`,
     deliverables: [
       'Full content calendar management',
       'Scheduling and posting across all relevant platforms',
@@ -44,7 +44,7 @@ export const services: Service[] = [
     id: 'visibility-matrix',
     name: 'The Visibility Matrix',
     tagline: 'Growth & Demand Systems',
-    description: `Consistency gets you seen by your existing audience. The Visibility Matrix gets you found by people who are not even looking for you yet.\n\nThis is not SEO and email in the traditional sense. This is demand compounding. Once your content system is consistent and your execution is running, we turn up the volume. We build the infrastructure that ensures your message reaches further, converts better, and compounds over time.`,
+    description: `Consistency gets you seen. The Visibility Matrix gets you found by people not yet looking for you.\n\nOnce your system is running, we turn up the volume. SEO, email, demand generation, and content repurposing, built to compound over time.`,
     deliverables: [
       'SEO-aligned content strategy and blog system',
       'Email marketing infrastructure and nurture sequences',

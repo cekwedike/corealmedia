@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 import { Mail, Instagram, Linkedin, Facebook, Loader2 } from '@/components/ui/Icons3D'
 
 interface FormValues {
-  fullName: string
+  firstName: string
+  lastName?: string
   email: string
   company: string
   service: string
@@ -20,7 +21,7 @@ const SERVICE_OPTIONS = [
   { value: 'content-os', label: 'The Content OS (Done-For-You Systems)' },
   { value: 'operational-engine', label: 'The Operational Engine (Marketing & Management)' },
   { value: 'visibility-matrix', label: 'The Visibility Matrix (Growth & Demand)' },
-  { value: 'not-sure', label: "I'm not sure yet — let's talk" },
+  { value: 'not-sure', label: "I'm not sure yet, let's talk" },
 ]
 
 const inputClass =
@@ -40,27 +41,23 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormValues) => {
     setServerError('')
-    if (data.website) {
-      router.push('/thank-you')
-      return
-    }
     try {
-      const endpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT
-      if (!endpoint) throw new Error('Form endpoint not configured.')
-
-      const res = await fetch(endpoint, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: data.fullName,
+          firstName: data.firstName,
+          lastName: data.lastName,
           email: data.email,
           company: data.company,
           service: data.service,
           message: data.message,
+          website: data.website,
         }),
       })
 
-      if (!res.ok) throw new Error('Submission failed. Please try again.')
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Submission failed. Please try again.')
       router.push('/thank-you')
     } catch (err) {
       setServerError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
@@ -78,7 +75,7 @@ export default function ContactForm() {
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-              {/* Honeypot: hidden from users, bots fill it — do not include in submission */}
+              {/* Honeypot: hidden from users, bots fill it. Do not include in submission */}
               <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input
@@ -90,21 +87,35 @@ export default function ContactForm() {
                 />
               </div>
 
-              {/* Full Name */}
-              <div>
-                <label htmlFor="fullName" className={labelClass}>
-                  Full Name <span className="text-accent">*</span>
-                </label>
-                <input
-                  id="fullName"
-                  type="text"
-                  placeholder="Your full name"
-                  className={inputClass}
-                  {...register('fullName', { required: 'Full name is required' })}
-                />
-                {errors.fullName && (
-                  <p className={errorClass}>{errors.fullName.message}</p>
-                )}
+              {/* Name row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="firstName" className={labelClass}>
+                    First Name <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    placeholder="First name"
+                    className={inputClass}
+                    {...register('firstName', { required: 'First name is required' })}
+                  />
+                  {errors.firstName && (
+                    <p className={errorClass}>{errors.firstName.message}</p>
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="lastName" className={labelClass}>
+                    Last Name
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    placeholder="Last name"
+                    className={inputClass}
+                    {...register('lastName')}
+                  />
+                </div>
               </div>
 
               {/* Email */}

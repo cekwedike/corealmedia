@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * Icons via Phosphor — clean, minimal line icons (regular weight).
+ * Icons via Phosphor - clean, minimal line icons (regular weight).
  */
 import {
   List as ListPhosphor,

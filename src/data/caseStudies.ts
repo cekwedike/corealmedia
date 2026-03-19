@@ -8,11 +8,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       'Inconsistent posting, no clear content direction, founder doing everything manually with no system in place.',
     challengeDetail:
-      'The founder was spending hours every week trying to figure out what to post, writing captions at midnight, and still missing weeks at a time. There was no strategy, no workflow, and no consistency. The brand existed, but it was not building anything.',
+      'Hours lost weekly to guesswork, captions written at midnight, and weeks missed. The brand existed but wasn\'t building anything.',
     solution:
-      'We implemented The Content OS — building a full content strategy, defining three core content pillars, writing three months of scripts and captions in advance, and setting up a repeatable monthly production workflow.',
+      'We implemented The Content OS, building a full content strategy, defining three core content pillars, writing three months of scripts and captions in advance, and setting up a repeatable monthly production workflow.',
     solutionDetail:
-      'The founder recorded content in one session per month. We handled everything else: scripting, editing briefs, caption writing, scheduling, and optimization. The system ran whether the founder was present or not.',
+      'One recording session per month. We handled scripting, briefs, captions, scheduling, and optimization. The system ran whether the founder was present or not.',
     results: [
       {
         metric: '3 Months',
@@ -43,11 +43,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       'Managing content across three brands simultaneously with a small team and no repeatable workflow.',
     challengeDetail:
-      'Three different brands. Three different audiences. Three different content calendars. A small internal team was stretched across all of them with no system connecting the work. Quality was inconsistent and deadlines were missed regularly.',
+      'Three brands, three audiences, one small team, stretched thin with no shared system. Quality dropped and deadlines slipped.',
     solution:
       'We deployed The Content OS and The Operational Engine across all three brands simultaneously, building a unified production workflow that treated all three brands as one coordinated system.',
     solutionDetail:
-      'Each brand got its own content strategy and messaging pillars, but the production workflow was shared and standardized. Scripts, briefs, and schedules moved through one system instead of three separate ones.',
+      'Each brand kept its own strategy and pillars. But one shared production workflow handled all three: scripts, briefs, and schedules through a single system.',
     results: [
       {
         metric: '3 Brands',
@@ -78,11 +78,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       'High client volume, inconsistent output quality, and no repeatable content production workflow.',
     challengeDetail:
-      'The agency was managing twelve clients but running on chaos. Every month felt like starting from scratch. Content quality varied between clients. Deadlines were close calls. The team was tired.',
+      'Twelve clients, no repeatable process. Every month felt like starting over. Quality varied, deadlines were close calls, and the team was burnt out.',
     solution:
       'We built a standardized content production system using The Operational Engine, creating SOPs, brief templates, review checkpoints, and delivery workflows that applied across all twelve client accounts.',
     solutionDetail:
-      'Every client account followed the same production stages. Briefs were standardized. Review cycles were defined. The team knew exactly what to do and when. Quality became predictable instead of variable.',
+      'Standardized briefs, defined review cycles, and shared production stages across all accounts. The team knew exactly what to do and when.',
     results: [
       {
         metric: '12 Clients',

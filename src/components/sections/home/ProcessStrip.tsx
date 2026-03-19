@@ -20,7 +20,7 @@ const stages = [
     number: '03',
     icon: FolderOpen,
     title: 'Content Creation',
-    description: 'Scripts, visuals, hooks, captions, briefs — everything produced to brief and on time.',
+    description: 'Scripts, visuals, hooks, captions, briefs. Everything produced to brief and on time.',
   },
   {
     number: '04',
@@ -55,7 +55,7 @@ export default function ProcessStrip() {
           </ScrollReveal>
         </div>
 
-        {/* Stages — horizontal on lg+, 2-col on tablet, stacked on mobile */}
+        {/* Stages - horizontal on lg+, 2-col on tablet, stacked on mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0">
           {stages.map((stage, index) => {
             const Icon = stage.icon

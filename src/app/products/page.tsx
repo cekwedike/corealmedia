@@ -6,7 +6,7 @@ import CTABanner from '@/components/shared/CTABanner'
 export const metadata: Metadata = {
   title: 'Products | Coréal Media',
   description:
-    'DIY content tools built from the same systems we use for clients. Templates, playbooks, and kits to help you start building your content engine — today.',
+    'DIY content tools built from the same systems we use for clients. Templates, playbooks, and kits to help you start building your content engine today.',
   openGraph: {
     title: 'Products | Coréal Media',
     description: 'Professional content tools from $10. Templates, playbooks, and kits used by Coréal Media.',

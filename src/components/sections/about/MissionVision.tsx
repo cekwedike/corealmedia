@@ -20,15 +20,9 @@ export default function MissionVision() {
                 Our Mission
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-6">Our Mission</h2>
-              <p className="font-body text-body-md text-text-secondary leading-relaxed mb-5">
-                To help brands scale visibility and trust through content systems that are
-                strategic, not random. Consistent, not occasional. High-quality, not rushed.
-                Scalable, not founder dependent.
-              </p>
               <p className="font-body text-body-md text-text-secondary leading-relaxed">
-                We build a system that works even when the founder is tired, the team is busy, the
-                client is traveling, and life is happening. It begins internally and becomes a
-                replica for every client we serve.
+                To help brands scale visibility and trust through content systems that are
+                strategic, consistent, and built to run without founder dependency.
               </p>
             </div>
           </ScrollReveal>
@@ -40,14 +34,9 @@ export default function MissionVision() {
                 Our Vision
               </p>
               <h2 className="font-display text-display-lg text-text-primary mb-6">Our Vision</h2>
-              <p className="font-body text-body-md text-text-secondary leading-relaxed mb-5">
-                To build an agency that scales without chaos.
-              </p>
               <p className="font-body text-body-md text-text-secondary leading-relaxed">
-                By 2026 to 2027, Coréal Media will run fully on standard operating procedures, not
-                guesswork. It will deliver consistently without last-minute panic, manage 20 to 50
-                or more clients without quality drop, maintain strong operational ownership, and
-                grow a team with clear roles and defined growth paths.
+                To build an agency that scales without chaos, where every client gets the same
+                standard of quality, every time, without exception.
               </p>
             </div>
           </ScrollReveal>

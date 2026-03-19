@@ -31,7 +31,7 @@ export default function ContactHero() {
           className="font-body text-body-lg text-text-secondary max-w-[560px]"
         >
           Whether you&apos;re a founder who&apos;s done with the chaos, a brand ready to scale, or
-          an agency that needs execution support — this is where it starts. Fill in the form and
+          an agency that needs execution support. This is where it starts. Fill in the form and
           we&apos;ll be in touch within 48 hours.
         </motion.p>
       </div>

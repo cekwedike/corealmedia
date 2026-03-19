@@ -37,8 +37,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           className="font-body text-body-lg text-text-secondary max-w-[640px] mt-8"
         >
-          We don&apos;t offer a menu of random services. Everything we do connects into one system.
-          Strategy feeds execution. Execution feeds scale. And scale compounds over time.
+          Everything we do connects into one system: strategy feeds execution, execution feeds scale.
         </motion.p>
       </div>
     </section>

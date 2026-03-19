@@ -8,36 +8,31 @@ const STAGES = [
     number: '01',
     icon: Search,
     title: 'Lead Generation & Acquisition',
-    description:
-      'This is where we attract and close clients. It includes outreach, discovery calls, proposal creation, scope definition, pricing, and contract sign-off. The outcome is a client with clear deliverables and clear payment terms.',
+    description: 'Discovery calls, scoping, and contract sign-off. We align on deliverables before anything starts.',
   },
   {
     number: '02',
     icon: MessageSquare,
     title: 'Client Onboarding & Strategy',
-    description:
-      'This is where we clarify content direction completely. We capture brand voice and positioning, audience pain points, goals and offers, deliverables, timelines, and posting platforms. We also build a Custom GPT for the client to maintain consistent tone and messaging. The outcome is a detailed content strategy and full operational clarity.',
+    description: 'Brand voice, audience, goals, and a Custom GPT. Full content direction locked before production begins.',
   },
   {
     number: '03',
     icon: FolderOpen,
     title: 'Content Creation',
-    description:
-      'Scripts and visuals get produced here. Hooks, content topics, scripts (talking head and faceless), captions with CTAs, design briefs, video briefs, and initial visual direction set by the Creative Lead. The outcome is a batch of ready-to-review content assets.',
+    description: 'Scripts, visuals, captions, and briefs, produced on schedule by the creative team.',
   },
   {
     number: '04',
     icon: Eye,
     title: 'Content Review & Modifications',
-    description:
-      'This is where we protect quality. We run internal QA (checking for typos, brand alignment, formatting, and accuracy), send to the client for review, and handle edits through to final approval. The outcome is approved content ready for scheduling.',
+    description: 'Internal QA, client review, and edits handled until content is approved and ready to go live.',
   },
   {
     number: '05',
     icon: Trophy,
     title: 'Execution & Optimization',
-    description:
-      'Content goes live here and we improve continuously. This includes the scheduling calendar, posting and platform execution, engagement support where included, monthly analytics, and optimization decisions for the next cycle.',
+    description: 'Content publishes on schedule. We track performance and improve every cycle.',
   },
 ]
 

@@ -32,7 +32,7 @@ export default function ProductsHero() {
           className="font-body text-body-lg text-text-secondary max-w-[580px]"
         >
           Not ready for a full agency engagement? Start here. These are the exact templates,
-          frameworks, and tools we use to build content engines — packaged so you can implement
+          frameworks, and tools we use to build content engines, packaged so you can implement
           them yourself, starting today.
         </motion.p>
       </div>

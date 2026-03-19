@@ -28,23 +28,15 @@ export default function ProblemSection() {
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <p className="font-body text-body-md lg:text-body-lg text-text-secondary mb-4">
-                Posting isn&apos;t a strategy. Posting consistently with a clear message, to the
-                right audience, in the right format, across the right platforms — that&apos;s a
-                system.
-              </p>
               <p className="font-body text-body-md lg:text-body-lg text-text-secondary">
-                Most brands struggle not because they don&apos;t know content matters. They struggle
-                because nobody built the engine. No workflow. No consistency. No clear direction.
-                Just panic posting when it feels like too long has passed.
-              </p>
-              <p className="font-body text-body-md lg:text-body-lg text-text-secondary mt-4 font-medium text-text-primary">
-                That&apos;s exactly what Coréal was built to fix.
+                Posting isn&apos;t a strategy. Posting consistently with a clear message, to the
+                right audience, in the right format, across the right platforms. That&apos;s a
+                system. That&apos;s exactly what Coréal builds.
               </p>
             </ScrollReveal>
           </div>
 
-          {/* Right Column — Problem Points */}
+          {/* Right Column - Problem Points */}
           <div className="flex flex-col gap-5 mt-2">
             {problems.map((problem, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>

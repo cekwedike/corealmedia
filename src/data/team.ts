@@ -5,7 +5,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Winny',
     role: 'Chief Executive Officer & Founder',
     department: 'Leadership',
-    bio: 'Winny built Coréal around a simple but radical belief — that the future of content is co-created. She leads with clarity and holds the standard for everything the agency produces.',
+    bio: 'Winny built Coréal around a simple but radical belief: that the future of content is co-created. She leads with clarity and holds the standard for everything the agency produces.',
     owns: ['Vision', 'standards', 'key client relationships', 'final decisions', 'culture'],
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
   },

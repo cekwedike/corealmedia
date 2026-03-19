@@ -28,7 +28,7 @@ export default function TeamGrid({ members }: TeamGridProps) {
           </ScrollReveal>
         </div>
 
-        {/* Cards grid — uniform width and height */}
+        {/* Cards grid - uniform width and height */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {members.map((member, i) => (
             <ScrollReveal key={member.name} delay={i * 0.06} className="h-full">

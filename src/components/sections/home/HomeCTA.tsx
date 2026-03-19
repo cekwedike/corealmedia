@@ -14,7 +14,7 @@ export default function HomeCTA() {
           </h2>
           <p className="font-body text-body-lg text-text-secondary mb-10">
             Let&apos;s talk about your brand, your goals, and exactly how Coréal can help you show
-            up consistently — at scale, without the chaos.
+            up consistently, at scale, without the chaos.
           </p>
           <Link
             href="/contact"

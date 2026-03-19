@@ -41,10 +41,6 @@ export default function ServicesTeaser() {
             <h2 className="font-display text-display-lg text-text-primary mb-5">
               Three Services. One System. Real Results.
             </h2>
-            <p className="font-body text-body-lg text-text-secondary max-w-[600px] mx-auto">
-              We operate across three connected services. Each one builds on the last. Together,
-              they turn your brand into a content machine that runs whether you&apos;re present or not.
-            </p>
           </ScrollReveal>
         </div>
 

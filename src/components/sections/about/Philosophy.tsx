@@ -25,17 +25,14 @@ const PILLARS = [
 ]
 
 const BODY_PARAGRAPHS = [
-  "We do not believe in AI as a replacement for human creativity. We do not believe in human effort that ignores the leverage of modern technology. We don't choose between the two. We integrate.",
-  'AI gives us precision, speed, scale, automation, data collation, and pattern recognition.',
-  'Humans bring intuition, taste, refinement, direction, emotion, and judgment.',
-  'We sit at the intersection of both.',
+  "We don't choose between AI and human creativity. We integrate both. AI brings precision and scale. Humans bring taste, emotion, and judgment.",
 ]
 
 export default function Philosophy() {
   return (
     <section className="bg-bg-primary section-padding border-t border-border-subtle">
       <div className="container-site">
-        {/* Header — centered */}
+        {/* Header - centered */}
         <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <ScrollReveal>
             <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5">

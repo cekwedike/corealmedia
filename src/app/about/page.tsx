@@ -6,7 +6,9 @@ import TeamGrid from '@/components/sections/about/TeamGrid'
 import MissionVision from '@/components/sections/about/MissionVision'
 import CTABanner from '@/components/shared/CTABanner'
 import { JsonLd, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
-import { teamMembers } from '@/data/team'
+import { getTeamMembers } from '@/lib/wordpress'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -21,14 +23,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const members = await getTeamMembers()
+
   return (
     <>
       <JsonLd data={breadcrumbSchema('About Us', `${SITE_URL}/about`)} />
       <AboutHero />
       <BrandStory />
       <Philosophy />
-      <TeamGrid members={teamMembers} />
+      <TeamGrid members={members} />
       <MissionVision />
       <CTABanner
         headline="Want to Work With a Team That Treats Your Brand Like Their Own?"

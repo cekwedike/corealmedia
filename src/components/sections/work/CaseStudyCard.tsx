@@ -50,7 +50,7 @@ export default function CaseStudyCard({ study }: CaseStudyCardProps) {
           {study.clientType}
         </h3>
 
-        {/* Challenge — 2 line clamp */}
+        {/* Challenge - 2 line clamp */}
         <p
           className="font-body text-body-sm text-text-secondary mb-4 leading-relaxed"
           style={{

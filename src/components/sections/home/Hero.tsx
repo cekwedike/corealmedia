@@ -119,7 +119,7 @@ export default function Hero() {
           className="font-body text-body-lg text-text-secondary max-w-[520px] mx-auto mt-5"
         >
           Most brands post when they remember. We build the engine that ensures you never stop
-          showing up — with strategy, quality, and a system that scales.
+          showing up. Strategy, quality, and a system that scales.
         </motion.p>
 
         <motion.div
@@ -240,7 +240,7 @@ export default function Hero() {
         {/* Side edge fade (left/right) */}
         <div aria-hidden className="carousel-edge-fade" />
 
-        {/* Top fade — blends card shadows into page bg */}
+        {/* Top fade - blends card shadows into page bg */}
         <div
           aria-hidden
           style={{

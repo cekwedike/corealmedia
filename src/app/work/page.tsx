@@ -3,7 +3,9 @@ import WorkHero from '@/components/sections/work/WorkHero'
 import CaseStudyGrid from '@/components/sections/work/CaseStudyGrid'
 import CTABanner from '@/components/shared/CTABanner'
 import { JsonLd, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
-import { caseStudies } from '@/data/caseStudies'
+import { getCaseStudies } from '@/lib/wordpress'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Our Work',
@@ -13,11 +15,13 @@ export const metadata: Metadata = {
     title: 'Our Work | Coréal Media',
     description: 'Real results from real brands. Browse case studies from Coréal Media clients.',
     url: 'https://corealmedia.com/work',
-    images: [{ url: '/images/og/og-work.jpg', width: 1200, height: 630, alt: 'Our Work — Coréal Media' }],
+    images: [{ url: '/images/og/og-work.jpg', width: 1200, height: 630, alt: 'Our Work at Coréal Media' }],
   },
 }
 
-export default function WorkPage() {
+export default async function WorkPage() {
+  const caseStudies = await getCaseStudies()
+
   return (
     <>
       <JsonLd data={breadcrumbSchema('Our Work', `${SITE_URL}/work`)} />

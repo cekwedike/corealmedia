@@ -9,7 +9,7 @@ const products = [
     name: 'Content Audit Kit',
     tagline: 'Diagnose before you fix',
     description:
-      'A Google Sheets template that reveals exactly where your content is leaking — gaps, inconsistencies, and dead formats — so you know what to fix first.',
+      'A Google Sheets template that reveals exactly where your content is leaking: gaps, inconsistencies, and dead formats. Know what to fix first.',
     price: 19,
     badge: 'Most Popular',
   },
@@ -33,10 +33,10 @@ const products = [
   },
   {
     icon: Hash,
-    name: 'Caption Pack — 30 Done-For-You',
+    name: 'Caption Pack: 30 Done-For-You',
     tagline: 'Post today. Write nothing.',
     description:
-      '30 platform-ready captions across LinkedIn, Instagram, and X — crafted for founders, coaches, and service brands. Edit, post, done.',
+      '30 platform-ready captions across LinkedIn, Instagram, and X, crafted for founders, coaches, and service brands. Edit, post, done.',
     price: 15,
     badge: 'Quick Win',
   },
@@ -45,7 +45,7 @@ const products = [
     name: 'Hook Library',
     tagline: '100+ proven opening lines',
     description:
-      'The hardest part of any post is the first line. This library gives you 100+ tested hooks organized by goal — attention, curiosity, authority, and emotion.',
+      'The hardest part of any post is the first line. This library gives you 100+ tested hooks organized by goal: attention, curiosity, authority, and emotion.',
     price: 19,
     badge: null,
   },
@@ -54,7 +54,7 @@ const products = [
     name: 'Repurposing Playbook',
     tagline: 'Turn 1 piece into 10',
     description:
-      'A step-by-step guide to extracting maximum value from every piece of content you create — across formats, platforms, and audiences.',
+      'A step-by-step guide to extracting maximum value from every piece of content you create, across formats, platforms, and audiences.',
     price: 24,
     badge: null,
   },

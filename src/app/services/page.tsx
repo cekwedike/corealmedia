@@ -4,7 +4,9 @@ import ServiceBlock from '@/components/sections/services/ServiceBlock'
 import WorkflowDetail from '@/components/sections/services/WorkflowDetail'
 import CTABanner from '@/components/shared/CTABanner'
 import { JsonLd, serviceSchema, breadcrumbSchema, SITE_URL } from '@/components/shared/JsonLd'
-import { services } from '@/data/services'
+import { getServices } from '@/lib/wordpress'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Our Services',
@@ -16,20 +18,22 @@ export const metadata: Metadata = {
       'Content strategy, done-for-you execution, and demand growth systems. Built for brands that are serious about scale.',
     url: 'https://corealmedia.com/services',
     images: [
-      { url: '/images/og/og-services.jpg', width: 1200, height: 630, alt: 'Services — Coréal Media' },
+      { url: '/images/og/og-services.jpg', width: 1200, height: 630, alt: 'Services at Coréal Media' },
     ],
   },
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices()
+
   return (
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema('Services', `${SITE_URL}/services`)} />
       <ServicesHero />
-      <ServiceBlock service={services[0]} serviceNumber="01" reversed={false} bg="secondary" />
-      <ServiceBlock service={services[1]} serviceNumber="02" reversed={true} bg="primary" />
-      <ServiceBlock service={services[2]} serviceNumber="03" reversed={false} bg="secondary" />
+      {services[0] && <ServiceBlock service={services[0]} serviceNumber="01" reversed={false} bg="secondary" />}
+      {services[1] && <ServiceBlock service={services[1]} serviceNumber="02" reversed={true} bg="primary" />}
+      {services[2] && <ServiceBlock service={services[2]} serviceNumber="03" reversed={false} bg="secondary" />}
       <WorkflowDetail />
       <CTABanner
         headline="Not Sure Which Service Is Right for You?"

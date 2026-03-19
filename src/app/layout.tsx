@@ -5,6 +5,7 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { ThemeProvider } from '@/lib/theme'
+import { JsonLd, organizationSchema } from '@/components/shared/JsonLd'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){var t=localStorage.getItem('theme');var theme=t==='light'||t==='dark'?t:window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);}())`,
           }}
         />
+        <JsonLd data={organizationSchema} />
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

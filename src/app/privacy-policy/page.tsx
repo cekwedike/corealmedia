@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'Read the Coréal Media privacy policy to understand how we collect, use, and protect your information.',
-  robots: { index: true, follow: false },
+  robots: { index: true, follow: true },
 }
 
 export default function PrivacyPolicyPage() {
