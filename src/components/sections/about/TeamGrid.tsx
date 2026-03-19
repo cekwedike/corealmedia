@@ -35,13 +35,17 @@ export default function TeamGrid({ members }: TeamGridProps) {
               <div className="bg-bg-card border border-border-subtle rounded-sm p-5 sm:p-6 h-full flex flex-col min-h-[280px]">
                 {/* Avatar */}
                 <div className="relative w-16 h-16 rounded-sm overflow-hidden mb-4 bg-bg-secondary shrink-0">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 640px) 64px, (max-width: 1024px) 50vw, 25vw"
-                  />
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="64px"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-bg-elevated" />
+                  )}
                 </div>
 
                 {/* Name + role */}
