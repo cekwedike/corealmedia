@@ -185,7 +185,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   if (!BASE) return staticTeamMembers
   const posts = await wpFetch<WPPost>('team-member')
   if (!posts.length) return staticTeamMembers
-  return posts.map(transformTeamMember)
+  return posts.map(transformTeamMember).reverse()
 }
 
 // ─── Products ─────────────────────────────────────────────────────────────────
