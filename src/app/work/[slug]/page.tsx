@@ -17,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string }
 }): Promise<Metadata> {
-  const study = getCaseStudyBySlug(params.slug)
+  const study = await getCaseStudyBySlug(params.slug)
   if (!study) return { title: 'Case Study Not Found' }
   return {
     title: `${study.clientType} | Case Study`,
@@ -31,8 +31,8 @@ export async function generateMetadata({
   }
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const study = getCaseStudyBySlug(params.slug)
+export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const study = await getCaseStudyBySlug(params.slug)
   if (!study) notFound()
 
   const caseStudySchema = {
