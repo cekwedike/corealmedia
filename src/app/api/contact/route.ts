@@ -23,11 +23,8 @@ export async function POST(req: NextRequest) {
       { objectTypeId: '0-1', name: 'lastname', value: lastName || '' },
       { objectTypeId: '0-1', name: 'email', value: email },
       { objectTypeId: '0-1', name: 'company', value: company },
-      {
-        objectTypeId: '0-1',
-        name: 'message',
-        value: `Service Interest: ${service}\n\n${message}`,
-      },
+      { objectTypeId: '0-1', name: 'service_interest', value: service || '' },
+      { objectTypeId: '0-1', name: 'message', value: message || '' },
     ],
     context: {
       pageUri: 'https://corealmedia.com/contact',
