@@ -9,6 +9,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   }
 
+  const serviceMap: Record<string, string> = {
+    'content-os': 'The Content OS',
+    'operational-engine': 'The Operational Engine',
+    'visibility-matrix': 'The Visibility Matrix',
+    'not-sure': "I'm not sure yet, let's talk",
+  }
+  const mappedService = serviceMap[service] ?? service
+
   const portalId = process.env.HUBSPOT_PORTAL_ID
   const formGuid = process.env.HUBSPOT_FORM_GUID
 
@@ -23,7 +31,7 @@ export async function POST(req: NextRequest) {
       { objectTypeId: '0-1', name: 'lastname', value: lastName || '' },
       { objectTypeId: '0-1', name: 'email', value: email },
       { objectTypeId: '0-1', name: 'company', value: company },
-      { objectTypeId: '0-1', name: 'service_interest', value: service || '' },
+      { objectTypeId: '0-1', name: 'service_interest', value: mappedService || '' },
       { objectTypeId: '0-1', name: 'message', value: message || '' },
     ],
     context: {
