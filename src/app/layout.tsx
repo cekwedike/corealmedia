@@ -76,6 +76,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-eu1.hs-scripts.com/148060728.js"
+        />
       </head>
       <body className="bg-bg-primary text-text-primary font-body antialiased">
         {/* Anti-flash: apply saved theme before hydration */}
