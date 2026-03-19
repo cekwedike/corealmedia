@@ -28,39 +28,44 @@ export default function TeamGrid({ members }: TeamGridProps) {
           </ScrollReveal>
         </div>
 
-        {/* Cards grid - uniform width and height */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* Cards grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           {members.map((member, i) => (
             <ScrollReveal key={member.name} delay={i * 0.06} className="h-full">
-              <div className="bg-bg-card border border-border-subtle rounded-sm p-5 sm:p-6 h-full flex flex-col min-h-[280px]">
-                {/* Avatar */}
-                <div className="relative w-16 h-16 rounded-sm overflow-hidden mb-4 bg-bg-secondary shrink-0">
+              <div className="group bg-bg-card border border-border-subtle rounded-sm overflow-hidden h-full flex flex-col hover:border-[rgba(139,26,26,0.4)] transition-colors duration-300">
+                {/* Image */}
+                <div className="relative w-full aspect-[3/4] bg-bg-elevated shrink-0">
                   {member.image ? (
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover object-top"
-                      sizes="64px"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
                   ) : (
                     <div className="w-full h-full bg-bg-elevated" />
                   )}
+                  {/* Department badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="font-mono text-[0.6rem] uppercase tracking-widest bg-bg-primary/80 text-text-muted px-2 py-1 rounded-sm backdrop-blur-sm">
+                      {member.department}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Name + role */}
-                <h3 className="font-display text-[1.25rem] text-text-primary leading-snug mb-1 line-clamp-2">
-                  {member.name}
-                </h3>
-                <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-3 line-clamp-2">
-                  {member.role}
-                </p>
-
-                {/* What they own */}
-                <p className="font-body text-body-sm text-text-muted mb-1">What they own</p>
-                <p className="font-body text-body-sm text-text-secondary leading-relaxed flex-1 line-clamp-3">
-                  {member.owns.slice(0, 3).join(', ')}.
-                </p>
+                {/* Info */}
+                <div className="p-4 sm:p-5 flex flex-col flex-1">
+                  <h3 className="font-display text-[1.1rem] sm:text-[1.2rem] text-text-primary leading-snug mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="font-mono text-accent text-[0.6rem] uppercase tracking-widest mb-3 line-clamp-2">
+                    {member.role}
+                  </p>
+                  <p className="font-body text-body-sm text-text-secondary leading-relaxed line-clamp-2 mt-auto">
+                    {member.owns.slice(0, 2).join(', ')}.
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           ))}
