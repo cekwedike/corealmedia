@@ -41,6 +41,10 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormValues) => {
     setServerError('')
+    const hutk = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('hubspotutk='))
+      ?.split('=')[1] ?? ''
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -53,6 +57,7 @@ export default function ContactForm() {
           service: data.service,
           message: data.message,
           website: data.website,
+          hutk,
         }),
       })
 

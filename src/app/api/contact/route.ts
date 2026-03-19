@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { firstName, lastName, email, company, service, message, website } = body
+  const { firstName, lastName, email, company, service, message, website, hutk } = body
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
     req.headers.get('x-real-ip') ||
@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
       pageUri: 'https://corealmedia.com/contact',
       pageName: 'Contact',
       ipAddress: ip,
+      ...(hutk ? { hutk } : {}),
     },
   }
 
