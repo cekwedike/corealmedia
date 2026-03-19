@@ -109,7 +109,7 @@ export default function Hero() {
           className="font-display text-display-2xl text-text-primary max-w-4xl mx-auto text-balance px-1 sm:px-0"
         >
           Your Brand Deserves to Be Everywhere.{' '}
-          <span className="italic text-text-secondary">Consistently.</span>
+          <span className="consistently-text">Consistently.</span>
         </motion.h1>
 
         <motion.p
@@ -126,19 +126,43 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto"
+          className="flex items-center justify-center mt-6 sm:mt-8"
         >
           <Link
             href="/contact"
-            className="w-full sm:w-auto text-center bg-accent text-white font-body text-body-sm font-medium px-6 sm:px-8 py-3.5 rounded-md hover:bg-accent-hover transition-colors duration-200 min-h-[44px] flex items-center justify-center"
+            className="work-with-us-btn font-body min-h-[44px] flex items-center justify-center w-full sm:w-auto"
           >
-            Work With Us
-          </Link>
-          <Link
-            href="/work"
-            className="w-full sm:w-auto text-center border border-border text-text-primary font-body text-body-sm font-medium px-6 sm:px-8 py-3.5 rounded-md hover:border-accent transition-colors duration-200 min-h-[44px] flex items-center justify-center"
-          >
-            See Our Work
+            <span className="btn-label">Work With Us</span>
+            <span className="star-1" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
+            <span className="star-2" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
+            <span className="star-3" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
+            <span className="star-4" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
+            <span className="star-5" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
+            <span className="star-6" aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53" className="w-full h-auto" style={{ shapeRendering: 'geometricPrecision', fillRule: 'evenodd' }}>
+                <path className="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+              </svg>
+            </span>
           </Link>
         </motion.div>
       </div>

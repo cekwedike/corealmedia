@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           id="theme-init"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}())`,
+            __html: `(function(){var t=localStorage.getItem('theme');var theme=t==='light'||t==='dark'?t:window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);}())`,
           }}
         />
         <ThemeProvider>

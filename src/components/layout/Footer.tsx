@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Instagram, Linkedin, Facebook, Mail, ArrowRight } from '@/components/ui/Icons3D'
+import SocialIconButton from '@/components/ui/SocialIconButton'
 import { footerQuickLinks } from '@/data/navigation'
 
 export default function Footer() {
@@ -19,33 +20,27 @@ export default function Footer() {
               Content engineered by intelligence. Felt by humans.
             </p>
             <div className="flex items-center gap-4 mt-2">
-              <a
+              <SocialIconButton
                 href="https://instagram.com/corealmedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors duration-200"
+                platform="instagram"
                 aria-label="Coréal Media on Instagram"
               >
                 <Instagram size={18} />
-              </a>
-              <a
+              </SocialIconButton>
+              <SocialIconButton
                 href="https://linkedin.com/company/corealmedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors duration-200"
+                platform="linkedin"
                 aria-label="Coréal Media on LinkedIn"
               >
                 <Linkedin size={18} />
-              </a>
-              <a
+              </SocialIconButton>
+              <SocialIconButton
                 href="https://www.facebook.com/share/1DnHTtPTL4/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors duration-200"
+                platform="facebook"
                 aria-label="Coréal Media on Facebook"
               >
                 <Facebook size={18} />
-              </a>
+              </SocialIconButton>
             </div>
           </div>
 

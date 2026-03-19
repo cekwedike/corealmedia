@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Instagram, Linkedin, Facebook, Sun, Moon } from '@/components/ui/Icons3D'
+import { X, Instagram, Linkedin, Facebook, Sun, Moon } from '@/components/ui/Icons3D'
+import SocialIconButton from '@/components/ui/SocialIconButton'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
@@ -101,10 +102,17 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setMenuOpen(true)}
-              className="text-text-primary p-2"
+              className="hamburger-btn"
               aria-label="Open navigation menu"
             >
-              <Menu size={24} />
+              <span className="h-icon">
+                <svg viewBox="0 0 175 80" width="30" height="30" aria-hidden>
+                  <rect width="80" height="15" fill="currentColor" rx="10" />
+                  <rect y="30" width="80" height="15" fill="currentColor" rx="10" />
+                  <rect y="60" width="80" height="15" fill="currentColor" rx="10" />
+                </svg>
+              </span>
+              <span className="h-text">MENU</span>
             </button>
           </div>
         </div>
@@ -180,33 +188,27 @@ export default function Navbar() {
 
             {/* Social Links */}
             <div className="flex items-center justify-center gap-6 pb-10">
-              <a
+              <SocialIconButton
                 href="https://instagram.com/corealmedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-text-primary transition-colors"
+                platform="instagram"
                 aria-label="Coréal Media on Instagram"
               >
                 <Instagram size={20} />
-              </a>
-              <a
+              </SocialIconButton>
+              <SocialIconButton
                 href="https://linkedin.com/company/corealmedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-text-primary transition-colors"
+                platform="linkedin"
                 aria-label="Coréal Media on LinkedIn"
               >
                 <Linkedin size={20} />
-              </a>
-              <a
+              </SocialIconButton>
+              <SocialIconButton
                 href="https://www.facebook.com/share/1DnHTtPTL4/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted hover:text-text-primary transition-colors"
+                platform="facebook"
                 aria-label="Coréal Media on Facebook"
               >
                 <Facebook size={20} />
-              </a>
+              </SocialIconButton>
             </div>
           </motion.div>
         )}
