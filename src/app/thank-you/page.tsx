@@ -40,7 +40,7 @@ export default function ThankYouPage() {
         </h1>
         <p className="font-body text-body-lg text-text-secondary mb-10">
           Thank you for reaching out to Coréal Media. We have received your enquiry and will be in
-          touch within 48 business hours.
+          touch within 12 business hours.
         </p>
 
         <p className="font-body text-body-md text-text-secondary mb-8">
@@ -67,12 +67,20 @@ export default function ThankYouPage() {
           })}
         </div>
 
-        <Link
-          href="/services"
-          className="inline-block bg-accent text-white font-body text-body-sm font-medium px-7 py-3 rounded-md hover:bg-accent-hover transition-colors duration-200 mb-5"
-        >
-          Explore Our Services
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
+          <Link
+            href="/services"
+            className="inline-block bg-accent text-white font-body text-body-sm font-medium px-7 py-3 rounded-md hover:bg-accent-hover transition-colors duration-200"
+          >
+            Explore Our Services
+          </Link>
+          <Link
+            href="/products"
+            className="inline-block border border-border text-text-primary font-body text-body-sm font-medium px-7 py-3 rounded-md hover:border-accent hover:text-accent transition-colors duration-200"
+          >
+            Browse Products
+          </Link>
+        </div>
         <div>
           <Link
             href="/"

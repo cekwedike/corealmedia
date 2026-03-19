@@ -229,7 +229,7 @@ export default function ContactForm() {
               </button>
 
               <p className="font-body text-body-sm text-text-muted text-center">
-                We typically respond within 48 hours on business days.
+                We typically respond within 12 hours on business days.
               </p>
             </form>
           </div>
