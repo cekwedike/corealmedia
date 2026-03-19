@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import ProductsHero from '@/components/sections/products/ProductsHero'
 import ProductGrid from '@/components/sections/products/ProductGrid'
 import CTABanner from '@/components/shared/CTABanner'
+import { getProducts } from '@/lib/wordpress'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Products | Coréal Media',
@@ -14,11 +17,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts()
+
   return (
     <>
       <ProductsHero />
-      <ProductGrid />
+      <ProductGrid products={products} />
       <CTABanner
         headline="Want the Full Engine, Not Just the Tools?"
         body="Our products are a great start. But if you're ready to hand it off completely, let's talk."

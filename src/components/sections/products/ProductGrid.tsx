@@ -1,74 +1,33 @@
 'use client'
 
-import { ArrowRight, FileText, Calendar, Mic2, Repeat2, Hash, BookOpen } from '@/components/ui/Icons3D'
+import { ArrowRight, FileText, Calendar, Mic2, Repeat2, Hash, BookOpen, Layers } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
+import type { Product } from '@/types/product'
 
-const products = [
-  {
-    icon: FileText,
-    name: 'Content Audit Kit',
-    tagline: 'Diagnose before you fix',
-    description:
-      'A Google Sheets template that reveals exactly where your content is leaking: gaps, inconsistencies, and dead formats. Know what to fix first.',
-    price: 19,
-    badge: 'Most Popular',
-  },
-  {
-    icon: Mic2,
-    name: 'Brand Voice Blueprint',
-    tagline: 'Sound like yourself, every time',
-    description:
-      'A fill-in-the-blank worksheet to define your tone, language rules, and content personality. Stop second-guessing every caption.',
-    price: 25,
-    badge: null,
-  },
-  {
-    icon: Calendar,
-    name: '90-Day Content Calendar',
-    tagline: 'Never stare at a blank schedule again',
-    description:
-      'A Notion template with 90 days of content slots, platform-specific prompts, and a weekly review system baked in.',
-    price: 29,
-    badge: null,
-  },
-  {
-    icon: Hash,
-    name: 'Caption Pack: 30 Done-For-You',
-    tagline: 'Post today. Write nothing.',
-    description:
-      '30 platform-ready captions across LinkedIn, Instagram, and X, crafted for founders, coaches, and service brands. Edit, post, done.',
-    price: 15,
-    badge: 'Quick Win',
-  },
-  {
-    icon: BookOpen,
-    name: 'Hook Library',
-    tagline: '100+ proven opening lines',
-    description:
-      'The hardest part of any post is the first line. This library gives you 100+ tested hooks organized by goal: attention, curiosity, authority, and emotion.',
-    price: 19,
-    badge: null,
-  },
-  {
-    icon: Repeat2,
-    name: 'Repurposing Playbook',
-    tagline: 'Turn 1 piece into 10',
-    description:
-      'A step-by-step guide to extracting maximum value from every piece of content you create, across formats, platforms, and audiences.',
-    price: 24,
-    badge: null,
-  },
-]
+// Maps icon name strings (stored in WordPress) to actual React components
+const ICON_MAP: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  FileText,
+  Calendar,
+  Mic2,
+  Repeat2,
+  Hash,
+  BookOpen,
+  Layers,
+}
 
-export default function ProductGrid() {
+interface Props {
+  products: Product[]
+}
+
+export default function ProductGrid({ products }: Props) {
   return (
     <section className="bg-bg-primary section-padding">
       <div className="container-site">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {products.map((product, index) => {
-            const Icon = product.icon
+            const Icon = ICON_MAP[product.icon] ?? FileText
             return (
-              <ScrollReveal key={index} delay={index * 0.1}>
+              <ScrollReveal key={product.id} delay={index * 0.1}>
                 <div className="group relative flex flex-col gap-5 p-6 sm:p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
                   {product.badge && (
                     <span className="absolute top-5 right-5 font-mono text-label-lg uppercase tracking-widest text-accent border border-[rgba(139,26,26,0.35)] px-2 py-0.5 rounded-sm">
