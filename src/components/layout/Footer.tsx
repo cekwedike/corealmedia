@@ -6,7 +6,7 @@ import { footerQuickLinks } from '@/data/navigation'
 export default function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-border-subtle">
-      <div className="container-site section-padding">
+      <div className="container-site py-10 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-8 lg:gap-12">
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-4">
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-border-subtle">
+        <div className="mt-8 pt-5 border-t border-border-subtle">
           <p className="font-body text-body-sm lg:text-body-md text-text-muted">
             &copy; 2026 Coréal Media. All rights reserved.
           </p>
