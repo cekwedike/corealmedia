@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle,
+  Check,
   FileText,
   Calendar,
   Mic2,
@@ -170,7 +170,7 @@ export default function ProductDetail({ product }: Props) {
                 <ul className="space-y-3">
                   {product.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle size={18} className="text-accent mt-0.5 shrink-0" />
+                      <Check size={18} className="text-accent mt-0.5 shrink-0" />
                       <span className="font-body text-body-md text-text-secondary">
                         {feature}
                       </span>
