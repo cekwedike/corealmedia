@@ -12,7 +12,6 @@ export const services: Service[] = [
       'Script writing for talking head and faceless video formats',
       'Captions engineered for clarity, engagement, and conversion',
       'Design briefs and video briefs for your creative team',
-      "A Custom GPT built to maintain your brand's tone and voice consistently",
       'A repeatable monthly content production workflow',
     ],
     outcome:

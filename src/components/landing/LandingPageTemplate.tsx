@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import Image from 'next/image'
 import { Check, ArrowRight, Quote } from '@/components/ui/Icons3D'
 import LandingNav from './LandingNav'
@@ -45,16 +44,6 @@ export interface LandingPageData {
 }
 
 export default function LandingPageTemplate({ data }: { data: LandingPageData }) {
-  // Force dark theme — landing pages are always dark regardless of user system setting
-  useEffect(() => {
-    const prev = document.documentElement.getAttribute('data-theme')
-    document.documentElement.setAttribute('data-theme', 'dark')
-    return () => {
-      if (prev) document.documentElement.setAttribute('data-theme', prev)
-      else document.documentElement.removeAttribute('data-theme')
-    }
-  }, [])
-
   return (
     <div className="bg-bg-primary text-text-primary overflow-x-hidden">
       <LandingNav />

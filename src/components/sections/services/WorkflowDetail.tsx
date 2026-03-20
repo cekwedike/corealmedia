@@ -14,7 +14,7 @@ const STAGES = [
     number: '02',
     icon: MessageSquare,
     title: 'Client Onboarding & Strategy',
-    description: 'Brand voice, audience, goals, and a Custom GPT. Full content direction locked before production begins.',
+    description: 'Brand voice, audience, goals, and messaging pillars. Full content direction locked before production begins.',
   },
   {
     number: '03',

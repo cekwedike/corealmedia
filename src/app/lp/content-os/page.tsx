@@ -39,7 +39,6 @@ const data: LandingPageData = {
     'Script writing for talking head and faceless video formats',
     'Captions engineered for clarity, engagement, and conversion',
     'Design briefs and video briefs for your creative team',
-    "A Custom GPT built to maintain your brand's tone consistently",
     'A repeatable monthly content production workflow',
   ],
 
@@ -55,7 +54,7 @@ const data: LandingPageData = {
       number: '02',
       title: 'System Build',
       description:
-        'We build your content pillars, messaging framework, and production workflow. Your Custom GPT is trained. Your templates are set. Your system is live.',
+        'We build your content pillars, messaging framework, and production workflow. Your templates are set. Your system is live.',
       image: `${BASE}/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80`,
     },
     {
