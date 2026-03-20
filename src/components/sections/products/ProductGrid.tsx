@@ -1,10 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { ArrowRight, FileText, Calendar, Mic2, Repeat2, Hash, BookOpen, Layers } from '@/components/ui/Icons3D'
 import ScrollReveal from '@/components/shared/ScrollReveal'
 import type { Product } from '@/types/product'
 
-// Maps icon name strings (stored in WordPress) to actual React components
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   FileText,
   Calendar,
@@ -27,8 +27,11 @@ export default function ProductGrid({ products }: Props) {
           {products.map((product, index) => {
             const Icon = ICON_MAP[product.icon] ?? FileText
             return (
-              <ScrollReveal key={product.id} delay={index * 0.1}>
-                <div className="group relative flex flex-col gap-5 p-6 sm:p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full">
+              <ScrollReveal key={product.id} delay={index * 0.1} className="h-full">
+                <Link
+                  href={`/products/${product.id}`}
+                  className="group relative flex flex-col gap-5 p-6 sm:p-8 bg-bg-card border border-border rounded-sm hover:border-[rgba(139,26,26,0.4)] hover:bg-bg-elevated transition-all duration-300 h-full"
+                >
                   {product.badge && (
                     <span className="absolute top-5 right-5 font-mono text-label-lg uppercase tracking-widest text-accent border border-[rgba(139,26,26,0.35)] px-2 py-0.5 rounded-sm">
                       {product.badge}
@@ -53,12 +56,12 @@ export default function ProductGrid({ products }: Props) {
                     <p className="font-display text-[1.5rem] font-medium text-text-primary">
                       ${product.price}
                     </p>
-                    <button className="inline-flex items-center gap-1.5 font-body text-body-sm font-medium text-accent hover:gap-3 transition-all duration-200">
-                      Get It
+                    <span className="inline-flex items-center gap-1.5 font-body text-body-sm font-medium text-accent group-hover:gap-3 transition-all duration-200">
+                      View Details
                       <ArrowRight size={14} />
-                    </button>
+                    </span>
                   </div>
-                </div>
+                </Link>
               </ScrollReveal>
             )
           })}

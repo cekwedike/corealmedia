@@ -198,9 +198,16 @@ function transformProduct(post: WPPost): Product {
     name: post.title.rendered,
     tagline: str(a.tagline),
     description: str(a.description),
+    longDescription: str(a.long_description),
+    features: str(a.features)
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean),
     price: Number(a.price) || 0,
     badge: str(a.badge) || null,
     icon: str(a.icon),
+    purchaseUrl: str(a.purchase_url),
+    image: featuredImageUrl(post),
   }
 }
 
@@ -208,4 +215,18 @@ export async function getProducts(): Promise<Product[]> {
   if (!BASE) return []
   const posts = await wpFetch<WPPost>('product-item')
   return posts.map(transformProduct)
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  if (!BASE) return null
+  try {
+    const res = await fetch(`${BASE}/product-item?slug=${slug}&_embed`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) return null
+    const posts: WPPost[] = await res.json()
+    return posts.length ? transformProduct(posts[0]) : null
+  } catch {
+    return null
+  }
 }

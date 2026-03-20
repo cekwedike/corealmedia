@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getCaseStudies } from '@/lib/wordpress'
+import { getCaseStudies, getProducts } from '@/lib/wordpress'
 
 export const revalidate = 3600 // Rebuild sitemap at most once per hour
 
@@ -30,5 +30,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // If WordPress is unreachable at build time, sitemap still works for static pages
   }
 
-  return [...staticPages, ...caseStudyPages]
+  let productPages: MetadataRoute.Sitemap = []
+  try {
+    const products = await getProducts()
+    productPages = products.map(product => ({
+      url: `${baseUrl}/products/${product.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+  } catch {
+    // same fallback as above
+  }
+
+  return [...staticPages, ...caseStudyPages, ...productPages]
 }
