@@ -3,7 +3,6 @@ export const mainNavLinks = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
-  { label: 'Products', href: '/products' },
   { label: 'Contact', href: '/contact' },
 ] as const
 
@@ -12,7 +11,6 @@ export const footerQuickLinks = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
-  { label: 'Products', href: '/products' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
 ] as const

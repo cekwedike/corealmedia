@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getCaseStudies, getProducts } from '@/lib/wordpress'
+import { getCaseStudies } from '@/lib/wordpress'
 
 export const revalidate = 3600 // Rebuild sitemap at most once per hour
 
@@ -11,7 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/work`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/products`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.7 },
     { url: `${baseUrl}/privacy-policy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
   ]
@@ -30,18 +29,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // If WordPress is unreachable at build time, sitemap still works for static pages
   }
 
-  let productPages: MetadataRoute.Sitemap = []
-  try {
-    const products = await getProducts()
-    productPages = products.map(product => ({
-      url: `${baseUrl}/products/${product.id}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }))
-  } catch {
-    // same fallback as above
-  }
-
-  return [...staticPages, ...caseStudyPages, ...productPages]
+  return [...staticPages, ...caseStudyPages]
 }
