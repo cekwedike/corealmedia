@@ -3,9 +3,9 @@ import LandingPageTemplate from '@/components/landing/LandingPageTemplate'
 import type { LandingPageData } from '@/components/landing/LandingPageTemplate'
 
 export const metadata: Metadata = {
-  title: 'The Content OS | Coréal Media',
+  title: 'The Content OS | Coreal Media',
   description:
-    'Stop guessing what to post. The Content OS gives your brand a full content system — strategy, scripts, captions, and a workflow that runs every month without you.',
+    "Stop guessing what to post. The Content OS gives your brand a full content system — strategy, scripts, captions, and a workflow that runs every month without you.",
   robots: { index: false, follow: false },
 }
 
@@ -18,14 +18,14 @@ const data: LandingPageData = {
   serviceTagline: 'Done-For-You Content Systems',
 
   heroImage: `${BASE}/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1600&q=80`,
-  heroHeadline: 'You Know You Should Be Posting. You Just Don't Have a System for It.',
+  heroHeadline: "You Know You Should Be Posting. You Just Don't Have a System for It.",
   heroSub:
     'The Content OS gives your brand a complete content infrastructure — built once, running every month, sounding exactly like you.',
 
   painPointsHeadline: 'Does Any of This Sound Like You?',
   painPoints: [
     'You spend hours staring at a blank screen wondering what to post — and still feel behind.',
-    'Your content doesn't sound like you, or worse, it sounds like everyone else in your industry.',
+    "Your content doesn't sound like you, or worse, it sounds like everyone else in your industry.",
     'You post when motivation strikes, not on a schedule that actually builds momentum.',
     'You have ideas, but no system to turn them into consistent, on-brand content every month.',
   ],
@@ -39,7 +39,7 @@ const data: LandingPageData = {
     'Script writing for talking head and faceless video formats',
     'Captions engineered for clarity, engagement, and conversion',
     'Design briefs and video briefs for your creative team',
-    'A Custom GPT built to maintain your brand's tone consistently',
+    "A Custom GPT built to maintain your brand's tone consistently",
     'A repeatable monthly content production workflow',
   ],
 
@@ -86,14 +86,14 @@ const data: LandingPageData = {
   ],
 
   testimonialQuote:
-    'Before Coréal, I was posting randomly and hoping for the best. Now I have a system that runs without me being in every decision. My content finally sounds like me — and it's consistent.',
-  testimonialAuthor: 'Marketing Agency Founder — Coréal Media Client',
+    "Before Coreal, I was posting randomly and hoping for the best. Now I have a system that runs without me being in every decision. My content finally sounds like me — and it's consistent.",
+  testimonialAuthor: 'Marketing Agency Founder — Coreal Media Client',
 
   whoItsFor: [
     {
       title: 'Founders & Personal Brands',
       description:
-        'You're building in public but burning out trying to stay consistent. You need structure without losing your voice.',
+        "You're building in public but burning out trying to stay consistent. You need structure without losing your voice.",
     },
     {
       title: 'Service-Based Businesses',
@@ -103,7 +103,7 @@ const data: LandingPageData = {
     {
       title: 'Creators Going Pro',
       description:
-        'You're ready to treat content as a business asset, not a hobby. You want systems, not vibes.',
+        "You're ready to treat content as a business asset, not a hobby. You want systems, not vibes.",
     },
   ],
 }
