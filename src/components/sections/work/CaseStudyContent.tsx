@@ -102,10 +102,10 @@ export default function CaseStudyContent({ study }: CaseStudyContentProps) {
             </p>
             <h2 className="font-display text-display-md text-text-primary mb-10">The Outcome</h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {study.results.map((result, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="bg-bg-card border border-border-subtle rounded-sm p-8">
+              <ScrollReveal key={i} delay={i * 0.1} className="h-full">
+                <div className="h-full bg-bg-card border border-border-subtle rounded-sm p-8">
                   <p
                     className="font-display text-accent mb-2"
                     style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', lineHeight: 1 }}
