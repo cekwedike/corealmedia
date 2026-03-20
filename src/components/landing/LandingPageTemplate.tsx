@@ -235,7 +235,7 @@ export default function LandingPageTemplate({ data }: { data: LandingPageData })
       </section>
 
       {/* ── RESULTS STRIP ────────────────────────────────────────────────── */}
-      <section className="py-20 sm:py-28 border-b border-border-subtle" style={{ background: '#0F0808' }}>
+      <section className="bg-bg-card py-20 sm:py-28 border-b border-border-subtle">
         <div className="container-site max-w-5xl">
           <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-4">
             The Results
@@ -247,8 +247,7 @@ export default function LandingPageTemplate({ data }: { data: LandingPageData })
             {data.stats.map((stat, i) => (
               <div
                 key={i}
-                className="p-8 rounded-sm border"
-                style={{ background: 'rgba(139,26,26,0.06)', borderColor: 'rgba(139,26,26,0.2)' }}
+                className="p-8 rounded-sm bg-bg-secondary border border-border-subtle"
               >
                 <p
                   className="font-display text-accent mb-2"
