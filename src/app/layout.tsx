@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from 'next/font/google'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -77,6 +78,10 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = headers()
+  const pathname = headersList.get('x-pathname') ?? ''
+  const isLandingPage = pathname.startsWith('/lp/')
+
   return (
     <html
       lang="en"
@@ -111,9 +116,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         <JsonLd data={organizationSchema} />
         <ThemeProvider>
-          <Navbar />
+          {!isLandingPage && <Navbar />}
           <main>{children}</main>
-          <Footer />
+          {!isLandingPage && <Footer />}
         </ThemeProvider>
       </body>
     </html>
