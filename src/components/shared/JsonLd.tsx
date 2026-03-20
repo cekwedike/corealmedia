@@ -9,6 +9,86 @@ export function JsonLd({ data }: { data: object }) {
 
 export const SITE_URL = 'https://corealmedia.com'
 
+// Enables Google Sitelinks Searchbox in search results
+export const websiteSchema = {
+  '@context': 'https://schema.org' as const,
+  '@type': 'WebSite' as const,
+  name: 'Coréal Media',
+  url: SITE_URL,
+  potentialAction: {
+    '@type': 'SearchAction' as const,
+    target: {
+      '@type': 'EntryPoint' as const,
+      urlTemplate: `${SITE_URL}/work?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+}
+
+export const professionalServiceSchema = {
+  '@context': 'https://schema.org' as const,
+  '@type': 'ProfessionalService' as const,
+  name: 'Coréal Media',
+  url: SITE_URL,
+  description:
+    'Coréal Media is a content systems agency that builds content engines for founders, multi-brand companies, and agencies.',
+  email: 'hello@corealmedia.com',
+  areaServed: 'Worldwide',
+  priceRange: '$$',
+  serviceType: 'Content Marketing Agency',
+  knowsAbout: [
+    'Content Strategy',
+    'Content Creation',
+    'Brand Building',
+    'Social Media Management',
+    'Content Systems',
+    'Growth Marketing',
+  ],
+  sameAs: [
+    'https://instagram.com/corealmedia',
+    'https://linkedin.com/company/corealmedia',
+  ],
+}
+
+export const contactPageSchema = {
+  '@context': 'https://schema.org' as const,
+  '@type': 'ContactPage' as const,
+  name: 'Contact Coréal Media',
+  url: `${SITE_URL}/contact`,
+  description: 'Get in touch with Coréal Media to start building your content engine.',
+  mainEntity: {
+    '@type': 'Organization' as const,
+    name: 'Coréal Media',
+    email: 'hello@corealmedia.com',
+    url: SITE_URL,
+  },
+}
+
+export function productSchema(product: {
+  name: string
+  description: string
+  price: string
+  url: string
+  image?: string
+}) {
+  return {
+    '@context': 'https://schema.org' as const,
+    '@type': 'Product' as const,
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    url: product.url,
+    offers: {
+      '@type': 'Offer' as const,
+      price: product.price.replace(/[^0-9.]/g, ''),
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      seller: { '@type': 'Organization' as const, name: 'Coréal Media' },
+    },
+    brand: { '@type': 'Brand' as const, name: 'Coréal Media' },
+  }
+}
+
 export const organizationSchema = {
   '@context': 'https://schema.org' as const,
   '@type': 'Organization' as const,
