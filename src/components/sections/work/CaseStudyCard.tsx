@@ -17,17 +17,29 @@ export default function CaseStudyCard({ study }: CaseStudyCardProps) {
     >
       {/* Featured image */}
       <div className="relative w-full aspect-video overflow-hidden bg-bg-secondary">
-        <Image
-          src={study.featuredImage}
-          alt={study.clientType}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'rgba(0,0,0,0.2)' }}
-        />
+        {study.featuredImage ? (
+          <>
+            <Image
+              src={study.featuredImage}
+              alt={study.clientType}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'rgba(0,0,0,0.2)' }}
+            />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(135deg, rgba(139,26,26,0.15) 0%, rgba(17,17,17,0) 60%)',
+            }}
+          />
+        )}
       </div>
 
       {/* Card body */}

@@ -4,3 +4,4 @@ Disallow: /thank-you
 Disallow: /api/
 
 Sitemap: https://corealmedia.com/sitemap.xml
+LLMs: https://corealmedia.com/llms.txt
