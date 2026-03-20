@@ -207,10 +207,6 @@ export default function LandingPageTemplate({ data }: { data: LandingPageData })
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: 'rgba(10,10,10,0.25)' }}
-                  />
                 </div>
 
                 {/* Text */}
