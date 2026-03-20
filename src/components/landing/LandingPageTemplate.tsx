@@ -65,27 +65,27 @@ export default function LandingPageTemplate({ data }: { data: LandingPageData })
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.92) 100%)',
+                'linear-gradient(to bottom, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.78) 50%, rgba(10,10,10,0.95) 100%)',
             }}
           />
-          {/* Subtle red vignette top-left for brand accent */}
+          {/* Left-side darkening so text area is always readable */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 60% 50% at 0% 0%, rgba(139,26,26,0.18) 0%, transparent 70%)',
+                'linear-gradient(to right, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.15) 60%, transparent 100%)',
             }}
           />
         </div>
 
         <div className="container-site relative z-10 max-w-4xl">
-          <p className="font-mono text-accent text-label-lg uppercase tracking-widest mb-5">
+          <p className="font-mono text-white text-label-lg uppercase tracking-widest mb-5" style={{ opacity: 0.7 }}>
             {data.serviceTagline}
           </p>
           <h1 className="font-display text-display-xl text-white mb-6 text-balance">
             {data.heroHeadline}
           </h1>
-          <p className="font-body text-body-lg text-[rgba(245,245,245,0.75)] max-w-[560px] mb-10">
+          <p className="font-body text-body-lg text-white max-w-[560px] mb-10" style={{ opacity: 0.85 }}>
             {data.heroSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -98,7 +98,8 @@ export default function LandingPageTemplate({ data }: { data: LandingPageData })
             </a>
             <a
               href="#solution"
-              className="inline-flex items-center justify-center font-body text-body-sm text-[rgba(245,245,245,0.7)] hover:text-white transition-colors underline underline-offset-4 min-h-[52px]"
+              className="inline-flex items-center justify-center font-body text-body-sm text-white hover:text-white transition-colors underline underline-offset-4 min-h-[52px]"
+              style={{ opacity: 0.75 }}
             >
               See what&apos;s included
             </a>
